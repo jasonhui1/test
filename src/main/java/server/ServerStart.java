@@ -6,9 +6,20 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 
+
+/**
+ * @author Alfie Jones
+ *
+ * This class starts up our server
+ */
 public class ServerStart {
 
+
     public static void main(String[] args) {
+
+
+        //Open the database
+        DatabaseConnection.open("TransactionDatabase.db");
 
         ResourceConfig config = new ResourceConfig();
         config.packages("server");
@@ -26,6 +37,7 @@ public class ServerStart {
             e.printStackTrace();
         } finally {
             server.destroy();
+            DatabaseConnection.close();
         }
     }
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="">
+    <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="Refactored the code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/ServerStart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/ServerStart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/controllers/FileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/controllers/FileController.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -88,6 +88,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -152,8 +153,16 @@
       <updated>1582896674584</updated>
       <workItem from="1582896685332" duration="5903000" />
       <workItem from="1582902908746" duration="4172000" />
-      <workItem from="1583150926243" duration="2394000" />
+      <workItem from="1583150926243" duration="4170000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated Readme">
+      <created>1583153610095</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583153610095</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,5 +183,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Updated Readme" />
+    <MESSAGE value="Refactored the code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored the code" />
   </component>
 </project>

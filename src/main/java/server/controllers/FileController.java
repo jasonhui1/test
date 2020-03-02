@@ -3,6 +3,7 @@ package server.controllers;
 import server.Logger;
 import server.models.Services.UserService;
 
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
@@ -21,6 +22,7 @@ import java.io.IOException;
 
 @Path("/")
 public class FileController {
+
 
     @GET
     @Produces(MediaType.TEXT_HTML)
@@ -51,7 +53,7 @@ public class FileController {
 
     @GET
     @Path("{path}")
-    @Produces({"text/html"})
+    @Produces(MediaType.TEXT_HTML)
     public byte[] getIHTMLFile(@CookieParam("sessionToken") Cookie sessionCookie, @PathParam("path") String path) {
 
         byte[] file  = getFile("client/html/public/" + path + ".html");

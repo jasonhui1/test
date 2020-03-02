@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/DatabaseConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/ServerStart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/ServerStart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/models/Services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/models/Services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +121,7 @@
       <module name="CSED2" />
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="LaunchBrowser.Before.Run" url="http://localhost:8081/index" />
+        <option name="LaunchBrowser.Before.Run" url="http://localhost:8081/" />
       </method>
     </configuration>
   </component>
@@ -153,7 +151,8 @@
       <option name="presentableId" value="Default" />
       <updated>1582896674584</updated>
       <workItem from="1582896685332" duration="5903000" />
-      <workItem from="1582902908746" duration="4055000" />
+      <workItem from="1582902908746" duration="4172000" />
+      <workItem from="1583150926243" duration="2394000" />
     </task>
     <servers />
   </component>
@@ -165,7 +164,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

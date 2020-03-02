@@ -38,6 +38,7 @@ public class ServerStart {
         } finally {
             server.destroy();
             DatabaseConnection.close();
+            Logger.log("Server closed.");
         }
     }
 }

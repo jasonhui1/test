@@ -3,7 +3,6 @@ package server.controllers;
 import server.Logger;
 import server.models.Services.UserService;
 
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
@@ -24,11 +23,7 @@ import java.io.IOException;
 public class FileController {
 
 
-    @GET
-    @Produces(MediaType.TEXT_HTML)
-    public byte[] getIndexFile(@CookieParam("sessionToken") Cookie sessionCookie) {
-        return getIHTMLFile(sessionCookie, "index");
-    }
+
 
     @GET
     @Path("img/{path}")
@@ -66,8 +61,18 @@ public class FileController {
                 file = getFile("client/html/public/badCredentials.html");
             } }
 
+        if(file == null){
+            file = getFile("client/html/public/404.html");
+        }
+
         return file;
 
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public byte[] getIndexFile(@CookieParam("sessionToken") Cookie sessionCookie) {
+        return getIHTMLFile(sessionCookie, "index");
     }
 
     @GET

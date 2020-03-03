@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="Refactored the code">
+    <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/badCredentials.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/ServerStart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/ServerStart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/server/controllers/FileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/controllers/FileController.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,8 +67,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -153,7 +155,8 @@
       <updated>1582896674584</updated>
       <workItem from="1582896685332" duration="5903000" />
       <workItem from="1582902908746" duration="4172000" />
-      <workItem from="1583150926243" duration="4170000" />
+      <workItem from="1583150926243" duration="4193000" />
+      <workItem from="1583235596575" duration="1069000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1583153610095</created>
@@ -162,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583153610095</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Refactored the code">
+      <created>1583156047508</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1583156047508</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

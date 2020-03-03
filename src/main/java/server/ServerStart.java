@@ -26,9 +26,9 @@ public class ServerStart {
         ServletHolder servlet = new ServletHolder(new ServletContainer(config));
 
         Server server = new Server(8081);
-        //TODO test with /*
-        ServletContextHandler context = new ServletContextHandler(server, "/");
-        context.addServlet(servlet, "/");
+
+        ServletContextHandler context = new ServletContextHandler(server, "/*");
+        context.addServlet(servlet, "/*");
 
         try {
             server.start();

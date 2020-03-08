@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/models/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/models/Services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/css/custom/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/css/custom/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/signUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/signUp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/js/custom/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/js/custom/signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/TransactionDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TransactionDatabase.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/ServerStart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/ServerStart.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/models/Services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/models/Services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/PasswordHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/PasswordHash.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -196,7 +186,7 @@
       <workItem from="1583150926243" duration="4193000" />
       <workItem from="1583235596575" duration="1262000" />
       <workItem from="1583246218752" duration="1985000" />
-      <workItem from="1583688479331" duration="9450000" />
+      <workItem from="1583688479331" duration="10113000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1583153610095</created>
@@ -226,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583696441113</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Created Signup page&#10;Added signup server end&#10;need to add more validation on signup details">
+      <created>1583700167498</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1583700167498</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +247,8 @@
     <MESSAGE value="Updated Readme" />
     <MESSAGE value="Refactored the code" />
     <MESSAGE value="Created login html and css&#10;Added login js file which submits login form to server&#10;Added userController which deals with login&#10;Added password hash class&#10;Added ability to add new users to our database&#10;Added detail check&#10;Login system is functional" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created login html and css&#10;Added login js file which submits login form to server&#10;Added userController which deals with login&#10;Added password hash class&#10;Added ability to add new users to our database&#10;Added detail check&#10;Login system is functional" />
+    <MESSAGE value="Created Signup page&#10;Added signup server end&#10;need to add more validation on signup details" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Signup page&#10;Added signup server end&#10;need to add more validation on signup details" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>

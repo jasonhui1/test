@@ -68,7 +68,7 @@ public class UserService {
                 ResultSet results = statement.executeQuery();
                 if (results != null && results.next()) {
                     //check user has matching passwords
-                    if (ValidatePassword(enteredPassword,
+                    if (validatePassword(enteredPassword,
                             results.getString("password_hash"),
                             results.getBytes("password_salt"))) {
                         //return the user object
@@ -96,7 +96,7 @@ public class UserService {
      * @param password_salt : the passwords salt
      * @return returns true if equal, false if not
      */
-    private static boolean ValidatePassword(String passwordEntered, String password_hash, byte[] password_salt){
+    private static boolean validatePassword(String passwordEntered, String password_hash, byte[] password_salt){
 
         if(password_hash.equals(PasswordHash.hash(passwordEntered, password_salt))){
             Logger.log("A user has entered a correct password!");
@@ -112,7 +112,7 @@ public class UserService {
      * @param user : The user model to be added to the database
      * @param password : The password for the user
      */
-    public static void addUser(User user, String password){
+    public static void addUser(User user, String password) throws SQLException {
 
         try {
             PreparedStatement statement = DatabaseConnection.newStatement("INSERT INTO User (email, password_hash, password_salt, first_name, last_name) VALUES (?, ?, ?, ?, ?)");
@@ -127,7 +127,7 @@ public class UserService {
                 statement.setString(5, user.getLastName());
                 statement.executeUpdate();
             }
-        } catch (SQLException | NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
     }
@@ -139,7 +139,7 @@ public class UserService {
      * @param userID
      * @throws SQLException
      */
-    public static void DeleteUser(int userID) throws SQLException {
+    public static void deleteUser(int userID) throws SQLException {
         //The database manager will handle foreign keys references
         PreparedStatement statement = DatabaseConnection.newStatement("DELETE FROM User WHERE id = ?");
         if (statement != null) {
@@ -152,11 +152,41 @@ public class UserService {
     /**
      *
      * @author: Alfie Jones
+     * Checks to see if an email exists
+     * @param email
+     * @throws SQLException
+     */
+    public static boolean validEmail(String email) throws SQLException {
+        //TODO add more validation to make sure the email is of a correct form
+
+        //Check to see if the email already exists
+        PreparedStatement statement = DatabaseConnection.newStatement("Select 1 FROM User WHERE email = ?");
+        if (statement != null) {
+            statement.setString(1, email);
+            ResultSet results = statement.executeQuery();
+
+            if(results.next()){
+                return false;
+            } else{
+                return true;
+            }
+        }
+
+    return false;
+
+    }
+
+
+
+
+    /**
+     *
+     * @author: Alfie Jones
      * Updates all user details apart from id and password
      * @param user The user model we will update
      * @throws SQLException
      */
-    public static void UpdateDetails(User user) throws SQLException{
+    public static void updateDetails(User user) throws SQLException{
         PreparedStatement statement = DatabaseConnection.newStatement("UPDATE User SET email = ?, first_name = ?, last_name = ? WHERE id = ?");
         //find and update user with specified id
         if(statement != null){

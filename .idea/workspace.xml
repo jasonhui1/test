@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/badCredentials.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/controllers/FileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/controllers/FileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/models/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/models/Services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/css/custom/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/css/custom/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/signUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/signUp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/js/custom/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/js/custom/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/TransactionDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/TransactionDatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/ServerStart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/ServerStart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/models/Services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/models/Services/UserService.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,12 +73,38 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
         <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="LoginSystem" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -93,17 +124,19 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\js\custom" />
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources" />
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\html\public" />
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\html" />
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client" />
-      <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\js\other" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -135,7 +168,12 @@
           <expand>
             <path>
               <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@ac1cc819" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f4b1cb90" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f4b1cb90" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@78857113" type="9fbbdea:ServiceModel$ServiceNode" />
             </path>
           </expand>
           <select />
@@ -156,7 +194,9 @@
       <workItem from="1582896685332" duration="5903000" />
       <workItem from="1582902908746" duration="4172000" />
       <workItem from="1583150926243" duration="4193000" />
-      <workItem from="1583235596575" duration="1069000" />
+      <workItem from="1583235596575" duration="1262000" />
+      <workItem from="1583246218752" duration="1985000" />
+      <workItem from="1583688479331" duration="9450000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1583153610095</created>
@@ -172,7 +212,21 @@
       <option name="project" value="LOCAL" />
       <updated>1583156047508</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Refactored the code">
+      <created>1583237393259</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1583237393259</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Created login html and css&#10;Added login js file which submits login form to server&#10;Added userController which deals with login&#10;Added password hash class&#10;Added ability to add new users to our database&#10;Added detail check&#10;Login system is functional">
+      <created>1583696441113</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1583696441113</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +249,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Updated Readme" />
     <MESSAGE value="Refactored the code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored the code" />
+    <MESSAGE value="Created login html and css&#10;Added login js file which submits login form to server&#10;Added userController which deals with login&#10;Added password hash class&#10;Added ability to add new users to our database&#10;Added detail check&#10;Login system is functional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created login html and css&#10;Added login js file which submits login form to server&#10;Added userController which deals with login&#10;Added password hash class&#10;Added ability to add new users to our database&#10;Added detail check&#10;Login system is functional" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>

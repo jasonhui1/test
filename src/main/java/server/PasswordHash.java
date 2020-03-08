@@ -4,6 +4,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
+/**
+ * @author Alfie
+ */
 public class PasswordHash {
 
     public static String hash(String password, byte[] salt){

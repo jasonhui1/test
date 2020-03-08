@@ -2,6 +2,7 @@ package server.models.Services;
 
 import server.DatabaseConnection;
 import server.Logger;
+import server.PasswordHash;
 import server.models.User;
 
 import javax.ws.rs.core.Cookie;
@@ -50,6 +51,86 @@ public class UserService {
         return null;
     }
 
+    /**
+     * Verify user login details are correct
+     * @param enteredEmail : The email entered
+     * @param enteredPassword : Password associated with the email
+     * @return : Returns the user model if login was successful, otherwise a null object is returned
+     */
+    public static User verifyLogin(String enteredEmail, String enteredPassword) {
+        try {
+            //select any user with a matching email address
+            PreparedStatement statement = DatabaseConnection.newStatement("SELECT password_hash, password_salt, first_name, last_name, id FROM User WHERE email = ?");
+            if (statement != null) {
+                //set the question mark in the above statement to the email address entered
+                statement.setString(1, enteredEmail);
+                //Execute the above statement
+                ResultSet results = statement.executeQuery();
+                if (results != null && results.next()) {
+                    //check user has matching passwords
+                    if (ValidatePassword(enteredPassword,
+                            results.getString("password_hash"),
+                            results.getBytes("password_salt"))) {
+                        //return the user object
+                        return new User(enteredEmail,
+                                results.getString("first_name"),
+                                results.getString("last_name"),
+                                results.getInt("id"));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //return null if user didn't have correct info
+        return null;
+    }
+
+    //validates if two passwords, one hashed and one not, to see if they're equal
+    //returns true if equal, false if not
+
+    /**
+     * validates if two passwords, one hashed and one not, to see if they're equal
+     * @param passwordEntered : the users password to check
+     * @param password_hash : the hashed password
+     * @param password_salt : the passwords salt
+     * @return returns true if equal, false if not
+     */
+    private static boolean ValidatePassword(String passwordEntered, String password_hash, byte[] password_salt){
+
+        if(password_hash.equals(PasswordHash.hash(passwordEntered, password_salt))){
+            Logger.log("A user has entered a correct password!");
+            return true;
+        }
+        Logger.log("A user has entered an incorrect password!");
+        return false;
+    }
+
+
+    /**
+     * writes the passed in user to our user table in database
+     * @param user : The user model to be added to the database
+     * @param password : The password for the user
+     */
+    public static void addUser(User user, String password){
+
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement("INSERT INTO User (email, password_hash, password_salt, first_name, last_name) VALUES (?, ?, ?, ?, ?)");
+            if(statement != null){
+                //Get our password hash
+                byte[] salt = PasswordHash.getSalt();
+                //Add data to query
+                statement.setString(1, user.getEmail());
+                statement.setString(2, PasswordHash.hash(password, salt)); //Hash the password
+                statement.setBytes(3, salt);
+                statement.setString(4, user.getFirstName());
+                statement.setString(5, user.getLastName());
+                statement.executeUpdate();
+            }
+        } catch (SQLException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      *

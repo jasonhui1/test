@@ -30,6 +30,8 @@ public class ServerStart {
         ServletContextHandler context = new ServletContextHandler(server, "/*");
         context.addServlet(servlet, "/*");
 
+        //UserService.addUser(new User("alfie.jones@hotmail.co.uk", "Alfie", "Jones", -1), "test");
+
         try {
             server.start();
             Logger.log("Server successfully started.");

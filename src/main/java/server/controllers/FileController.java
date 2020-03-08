@@ -22,9 +22,6 @@ import java.io.IOException;
 @Path("/")
 public class FileController {
 
-
-
-
     @GET
     @Path("img/{path}")
     @Produces({"image/jpeg,image/png"})
@@ -36,14 +33,24 @@ public class FileController {
     @Path("js/{path}")
     @Produces({"text/javascript"})
     public byte[] getJavaScriptFile(@PathParam("path") String path) {
-        return getFile("client/js/" + path);
+        byte[] file = getFile("client/js/other/" + path);
+        if(file == null){
+            file = getFile("client/js/custom/" + path);
+        }
+        return file;
     }
 
     @GET
     @Path("css/{path}")
     @Produces({"text/css"})
     public byte[] getCSSFile(@PathParam("path") String path) {
-        return getFile("client/css/" + path);
+
+        byte[] file = getFile("client/css/other/" + path);
+        if(file == null){
+            file = getFile("client/css/custom/" + path);
+        }
+
+        return file;
     }
 
     @GET

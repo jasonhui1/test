@@ -1,11 +1,1 @@
-
-target/classes/client/css/custom/login.css
-target/classes/client/html/private/dashboard.html
-target/classes/client/html/public/404.html
-target/classes/client/html/public/badCredentials.html
-target/classes/client/html/public/login.html
-target/classes/client/html/public/signUp.html
-target/classes/client/js/custom/login.js
-target/classes/client/js/custom/signup.js
-target/classes/server/controllers/UserController.class
-target/classes/server/PasswordHash.class
+target/*

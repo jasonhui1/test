@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/PasswordHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/PasswordHash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,6 +44,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
         <item name="Transaction: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="TransactionDatabase" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="Transaction_Type: table" type="3d80ac25:SqliteImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -186,7 +194,8 @@
       <workItem from="1583150926243" duration="4193000" />
       <workItem from="1583235596575" duration="1262000" />
       <workItem from="1583246218752" duration="1985000" />
-      <workItem from="1583688479331" duration="10113000" />
+      <workItem from="1583688479331" duration="10738000" />
+      <workItem from="1583760278861" duration="498000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1583153610095</created>
@@ -223,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583700167498</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Created Signup page&#10;Added signup server end&#10;need to add more validation on signup details">
+      <created>1583700636775</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1583700636775</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,4 +1,4 @@
-package server.models.Services;
+package server.models.services;
 
 import server.DatabaseConnection;
 import server.Logger;
@@ -23,16 +23,17 @@ import java.util.ArrayList;
 
 public class UserService {
 
-    //Holds all active users
-    public static ArrayList<User> users = new ArrayList<>();
+    /**
+     * Holds all active users
+     */
+    public final static ArrayList<User> users = new ArrayList<>();
 
     /**
-     * @author: Alfred Jones
-     * @param sessionCookie the cookie to check
-     * @return returns the user model related to the cookie
      *
      * checks the given cookie to see if its related to an active user and if so return that user
-     *
+     * @author Alfred Jones
+     * @param sessionCookie the cookie to check
+     * @return returns the user model related to the cookie, if there's no user, null is returned
      */
     public static User ValidateSessionToken(Cookie sessionCookie){
         if(sessionCookie != null) {
@@ -53,6 +54,7 @@ public class UserService {
 
     /**
      * Verify user login details are correct
+     * @author Alfred Jones
      * @param enteredEmail : The email entered
      * @param enteredPassword : Password associated with the email
      * @return : Returns the user model if login was successful, otherwise a null object is returned
@@ -91,6 +93,7 @@ public class UserService {
 
     /**
      * validates if two passwords, one hashed and one not, to see if they're equal
+     * @author Alfred Jones
      * @param passwordEntered : the users password to check
      * @param password_hash : the hashed password
      * @param password_salt : the passwords salt
@@ -109,6 +112,7 @@ public class UserService {
 
     /**
      * writes the passed in user to our user table in database
+     * @author Alfred Jones
      * @param user : The user model to be added to the database
      * @param password : The password for the user
      */
@@ -134,10 +138,10 @@ public class UserService {
 
     /**
      *
-     * @author: Alfred Jones
+     * @author Alfred Jones
      * Deletes the specified user from our database
-     * @param userID
-     * @throws SQLException
+     * @param userID the id of the user to delete
+     * @throws SQLException something went wrong
      */
     public static void deleteUser(int userID) throws SQLException {
         //The database manager will handle foreign keys references
@@ -151,10 +155,10 @@ public class UserService {
 
     /**
      *
-     * @author: Alfred Jones
+     * @author Alfred Jones
      * Checks to see if an email exists
-     * @param email
-     * @throws SQLException
+     * @param email the email to validate
+     * @throws SQLException there was an error reading the database
      */
     public static boolean validEmail(String email) throws SQLException {
         //TODO add more validation to make sure the email is of a correct form
@@ -165,11 +169,7 @@ public class UserService {
             statement.setString(1, email);
             ResultSet results = statement.executeQuery();
 
-            if(results.next()){
-                return false;
-            } else{
-                return true;
-            }
+            return !results.next();
         }
 
     return false;
@@ -177,14 +177,12 @@ public class UserService {
     }
 
 
-
-
     /**
      *
-     * @author: Alfred Jones
+     * @author Alfred Jones
      * Updates all user details apart from id and password
      * @param user The user model we will update
-     * @throws SQLException
+     * @throws SQLException there was an error updating the database
      */
     public static void updateDetails(User user) throws SQLException{
         PreparedStatement statement = DatabaseConnection.newStatement("UPDATE User SET email = ?, first_name = ?, last_name = ? WHERE id = ?");
@@ -201,9 +199,10 @@ public class UserService {
 
 
     /**
+     * @author Alfred Jones
      * @author Gets all the users from out database and returns them in an array
-     * @return ArrayList<User>, an arraylist containing all the user models in our database
-     * @throws SQLException
+     * @return ArrayList<User>, an array list containing all the user models in our database
+     * @throws SQLException there was an error accessing the database
      */
     public static ArrayList<User> GetAllUsers() throws SQLException{
         //ArrayList to hold users

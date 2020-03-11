@@ -11,6 +11,14 @@ import java.security.SecureRandom;
  */
 public class PasswordHash {
 
+    /**
+     * Hashes a password using the password and its salt
+     *
+     * @param password the password to be hashed
+     * @param salt     the salt used in the hash
+     * @return returns the hashed password
+     * @author Alfred Jones
+     */
     public static String hash(String password, byte[] salt){
         String generatedPassword;
         try {
@@ -21,20 +29,23 @@ public class PasswordHash {
             //break password into bytes and encode it
             byte[] bytes = md.digest(password.getBytes());
             StringBuilder sb = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++)
-            {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            for (byte aByte : bytes) {
+                sb.append(Integer.toString((aByte & 0xff) + 0x100, 16).substring(1));
             }
             generatedPassword = sb.toString();
-        }
-        catch (NoSuchAlgorithmException e)
-        {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return null;
         }
         return generatedPassword;
     }
 
+    /**
+     * @return returns the salt
+     * @throws NoSuchAlgorithmException throws an error if our algorithm doesn't exist
+     * @author Alfred Jones
+     * Gets a random 128 byte salt for our password hash
+     */
     public static byte[] getSalt() throws NoSuchAlgorithmException {
         //Always use a SecureRandom generator
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");

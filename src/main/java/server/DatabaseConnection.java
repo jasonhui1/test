@@ -18,7 +18,7 @@ public class DatabaseConnection {
     /**
      * @author Alfred Jones
      * Opens the database specified, this only needs to be run if the database hasn't already been opened
-     * @param dbFile
+     * @param dbFile the location of our database
      */
     public static void open(String dbFile)
     {
@@ -43,9 +43,9 @@ public class DatabaseConnection {
     /**
      * @author Alfred Jones
      * Takes an sql statment and performs it on the database if it's been opened
-     * @param query
-     * @return
-     * @throws SQLException
+     * @param query the sql statement
+     * @return returns a prepared statement
+     * @throws SQLException throws and error if something went wrong
      */
     public static PreparedStatement newStatement(String query) throws SQLException {
         return connection.prepareStatement(query);

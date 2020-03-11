@@ -16,7 +16,7 @@ public class Logger {
 
     /**
      * @author Alfred Jones
-     * @param text
+     * @param text the text to be logged
      */
     public static void log(String text) {
         SimpleDateFormat simpleDate = new SimpleDateFormat("HH:mm:ss.SSS dd/MM/yyyy");

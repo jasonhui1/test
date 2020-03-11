@@ -1,11 +1,10 @@
 package server.controllers;
 
 import server.Logger;
-import server.models.Services.UserService;
 import server.models.User;
+import server.models.services.UserService;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 
@@ -19,6 +18,13 @@ import java.sql.SQLException;
 @Path("user/")
 public class UserController {
 
+    /**
+     * @param email    the email of the person attempting to login
+     * @param password the password of the person attempting to login
+     * @return returns information as to whether the login was successful or not
+     * @author Alfred Jones
+     * Handles the login requests
+     */
     @POST
     @Path("login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -36,12 +42,20 @@ public class UserController {
         }
     }
 
+    /**
+     * @param email     the email of the person attempting to sign up
+     * @param password  the password of the person attempting to sign up
+     * @param firstName the first name of the user signing up
+     * @param lastName  the last name of the user signing up
+     * @return returns information as to whether the login was successful or not
+     * @author Alfred Jones
+     * Handles the signup requests
+     */
     @POST
     @Path("add")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public String add(@CookieParam("sessionToken") Cookie sessionCookie,
-                      @FormParam("email") String email,
+    public String add(@FormParam("email") String email,
                       @FormParam("password") String password,
                       @FormParam("firstName") String firstName,
                       @FormParam("lastName") String lastName) {
@@ -62,6 +76,6 @@ public class UserController {
 
         Logger.log("Added a new user to our database");
 
-            return "success";
+        return "success";
     }
 }

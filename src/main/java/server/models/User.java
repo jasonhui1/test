@@ -4,7 +4,7 @@ import java.util.UUID;
 
 
 /**
- * @author: Alfred Jones
+ * @author Alfred Jones
  *
  * The model class of a user, Contains all the relevant info on a user
  *
@@ -13,9 +13,9 @@ import java.util.UUID;
 public class User {
 
 
-    private String firstName, lastName, email;
-    private int id;
-    private String sessionToken;
+    private final String firstName, lastName, email;
+    private final int id;
+    private final String sessionToken;
 
 
     //class constructor

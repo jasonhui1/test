@@ -1,7 +1,7 @@
 package server.controllers;
 
 import server.Logger;
-import server.models.Services.UserService;
+import server.models.services.UserService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Cookie;
@@ -22,6 +22,12 @@ import java.io.IOException;
 @Path("/")
 public class FileController {
 
+    /**
+     * @param path the file path to the image
+     * @return the image file
+     * @author Alfred Jones
+     * returns any images requested
+     */
     @GET
     @Path("img/{path}")
     @Produces({"image/jpeg,image/png"})
@@ -29,6 +35,12 @@ public class FileController {
         return getFile("client/img/" + path);
     }
 
+    /**
+     * @param path the file path to the file
+     * @return the file
+     * @author Alfred Jones
+     * returns any js files requested
+     */
     @GET
     @Path("js/{path}")
     @Produces({"text/javascript"})
@@ -40,6 +52,12 @@ public class FileController {
         return file;
     }
 
+    /**
+     * @param path the file path to the file
+     * @return the file
+     * @author Alfred Jones
+     * returns any css files requested
+     */
     @GET
     @Path("css/{path}")
     @Produces({"text/css"})
@@ -53,6 +71,12 @@ public class FileController {
         return file;
     }
 
+    /**
+     * @param path the file path to the file
+     * @return the file
+     * @author Alfred Jones
+     * returns any html files requested
+     */
     @GET
     @Path("{path}")
     @Produces(MediaType.TEXT_HTML)
@@ -76,12 +100,23 @@ public class FileController {
 
     }
 
+    /**
+     * @param sessionCookie the cookie sessionToken, used to identify the user
+     * @return the index file
+     * @author Alfred Jones
+     * returns the index file
+     */
     @GET
     @Produces(MediaType.TEXT_HTML)
     public byte[] getIndexFile(@CookieParam("sessionToken") Cookie sessionCookie) {
         return getIHTMLFile(sessionCookie, "index");
     }
 
+    /**
+     * @return the favicon
+     * @author Alfred Jones
+     * gets the sites favicon
+     */
     @GET
     @Path("favicon.ico")
     @Produces({"image/x-icon"})
@@ -91,6 +126,7 @@ public class FileController {
 
     /**
      * Gets the file
+     * @author Alfred Jones
      * @param filename the file to be fetched
      * @return returns a byte[] holding our file, null if it's not found
      */
@@ -98,6 +134,7 @@ public class FileController {
         try {
             File file = new File("src/main/resources/" + filename);
 
+            //attempt to read the file
             byte[] fileData = new byte[(int) file.length()];
             DataInputStream dis = new DataInputStream(new FileInputStream(file));
             dis.readFully(fileData);

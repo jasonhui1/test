@@ -12,12 +12,10 @@ import org.glassfish.jersey.servlet.ServletContainer;
  *
  * This class starts up our server
  */
-public class ServerStart {
+class ServerStart {
 
 
     public static void main(String[] args) {
-
-
         //Open the database
         DatabaseConnection.open("TransactionDatabase.db");
 

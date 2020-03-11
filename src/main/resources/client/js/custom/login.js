@@ -1,3 +1,5 @@
+//Author: Alfred Jones
+
 function loginRequest() {
     const loginForm = $('#loginForm');  //Form element used to login
     const header = $('#badDetails');    //<h2> element containing bad details message

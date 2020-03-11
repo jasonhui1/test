@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 
 /**
- * @author Alfie Jones
+ * @author Alfred Jones
  *
  * This class holds all the methods relating to our user model
  *
@@ -27,7 +27,7 @@ public class UserService {
     public static ArrayList<User> users = new ArrayList<>();
 
     /**
-     * @author: Alfie Jones
+     * @author: Alfred Jones
      * @param sessionCookie the cookie to check
      * @return returns the user model related to the cookie
      *
@@ -134,7 +134,7 @@ public class UserService {
 
     /**
      *
-     * @author: Alfie Jones
+     * @author: Alfred Jones
      * Deletes the specified user from our database
      * @param userID
      * @throws SQLException
@@ -151,7 +151,7 @@ public class UserService {
 
     /**
      *
-     * @author: Alfie Jones
+     * @author: Alfred Jones
      * Checks to see if an email exists
      * @param email
      * @throws SQLException
@@ -181,7 +181,7 @@ public class UserService {
 
     /**
      *
-     * @author: Alfie Jones
+     * @author: Alfred Jones
      * Updates all user details apart from id and password
      * @param user The user model we will update
      * @throws SQLException

@@ -1,3 +1,5 @@
+//Author: Alfred Jones
+
 function signUpRequest() {
     const loginForm = $('#signUpForm');  //Form element used to login
     //TODO Add password strength validation

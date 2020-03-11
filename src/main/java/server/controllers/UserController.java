@@ -9,6 +9,13 @@ import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 
+
+/**
+ * @author Alfie
+ *
+ * Deals with requests relating to
+ */
+
 @Path("user/")
 public class UserController {
 

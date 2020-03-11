@@ -4,7 +4,7 @@ import java.util.UUID;
 
 
 /**
- * @author: Alfie Jones
+ * @author: Alfred Jones
  *
  * The model class of a user, Contains all the relevant info on a user
  *

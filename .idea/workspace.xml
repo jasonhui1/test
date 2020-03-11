@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="" />
+    <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/client/css/custom/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/client/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/client/img/wallet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/PasswordHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/PasswordHash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/TransactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/models/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/models/Services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/css/custom/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/css/custom/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/signUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/signUp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/js/custom/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/js/custom/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/js/custom/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/js/custom/signup.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,9 +89,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -119,6 +140,7 @@
     <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/client/img" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -126,6 +148,9 @@
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\js\custom" />
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources" />
@@ -160,17 +185,7 @@
     <option name="allServicesViewState">
       <serviceView>
         <treeState>
-          <expand>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f4b1cb90" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-            </path>
-            <path>
-              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@f4b1cb90" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              <item name="com.intellij.execution.services.ServiceModel$ServiceNode@78857113" type="9fbbdea:ServiceModel$ServiceNode" />
-            </path>
-          </expand>
+          <expand />
           <select />
         </treeState>
       </serviceView>
@@ -192,7 +207,9 @@
       <workItem from="1583235596575" duration="1262000" />
       <workItem from="1583246218752" duration="1985000" />
       <workItem from="1583688479331" duration="10738000" />
-      <workItem from="1583760278861" duration="1024000" />
+      <workItem from="1583760278861" duration="2669000" />
+      <workItem from="1583772617992" duration="2733000" />
+      <workItem from="1583927882468" duration="1110000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1583153610095</created>

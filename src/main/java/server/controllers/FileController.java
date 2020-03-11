@@ -12,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * @author Alfie Jones
+ * @author Alfred Jones
  *
  * This class fetches all the files requested by the webpage
  *

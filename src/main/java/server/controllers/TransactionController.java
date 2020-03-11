@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 public class TransactionController {
 
     /**
-     * @author Alfie Jones
+     * @author Alfred Jones
      *
      * This is a template for how we can send our data to add a transaction to the database
      */

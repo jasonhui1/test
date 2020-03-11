@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author Alfie Jones
+ * @author Alfred Jones
  *
  * A simple logger class which formats any info we want to display
  * in the console
@@ -15,7 +15,7 @@ public class Logger {
 
 
     /**
-     * @author Alfie Jones
+     * @author Alfred Jones
      * @param text
      */
     public static void log(String text) {

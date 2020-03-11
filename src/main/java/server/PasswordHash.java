@@ -5,7 +5,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 /**
- * @author Alfie
+ * @author Alfred
+ *
+ * Hashes the passwords and generates a salt for them
  */
 public class PasswordHash {
 

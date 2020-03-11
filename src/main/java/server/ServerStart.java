@@ -8,7 +8,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 
 
 /**
- * @author Alfie Jones
+ * @author Alfred Jones
  *
  * This class starts up our server
  */
@@ -30,7 +30,6 @@ public class ServerStart {
         ServletContextHandler context = new ServletContextHandler(server, "/*");
         context.addServlet(servlet, "/*");
 
-        //UserService.addUser(new User("alfie.jones@hotmail.co.uk", "Alfie", "Jones", -1), "test");
 
         try {
             server.start();

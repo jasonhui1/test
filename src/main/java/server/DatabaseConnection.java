@@ -1,10 +1,13 @@
 package server;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 
 /**
- * @author Alfie Jones
+ * @author Alfred Jones
  *
  * This class manages the onnection with our database
  */
@@ -13,7 +16,7 @@ public class DatabaseConnection {
     private static Connection connection = null;
 
     /**
-     * @author Alfie Jones
+     * @author Alfred Jones
      * Opens the database specified, this only needs to be run if the database hasn't already been opened
      * @param dbFile
      */
@@ -38,7 +41,7 @@ public class DatabaseConnection {
     }
 
     /**
-     * @author Alfie Jones
+     * @author Alfred Jones
      * Takes an sql statment and performs it on the database if it's been opened
      * @param query
      * @return
@@ -51,7 +54,7 @@ public class DatabaseConnection {
 
     /**
      *
-     * @author Alfie Jones
+     * @author Alfred Jones
      * Closes the open database
      */
     public static void close()

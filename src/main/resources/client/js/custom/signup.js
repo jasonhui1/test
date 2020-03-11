@@ -2,14 +2,8 @@
 
 function signUpRequest() {
     const loginForm = $("#signUpForm");  //Form element used to login
-
-    const inputPass1 = $("#passwordInput1");
-    const inputPass2 = $("#passwordInput2");
-
     //TODO Add password strength validation
-
     loginForm.submit(event => {
-        inputPass2.setCustomValidity(inputPass2.value !== inputPass1.value ? "Passwords do not match." : "");
         event.preventDefault(); //Stop the default handling of the form submit
         if (checkPassword()) {
             $.ajax({

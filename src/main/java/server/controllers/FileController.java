@@ -86,7 +86,7 @@ public class FileController {
     @Path("favicon.ico")
     @Produces({"image/x-icon"})
     public byte[] getFavicon() {
-        return getFile("client/favicon.ico");
+        return getFile("client/img/favicon.ico");
     }
 
     /**

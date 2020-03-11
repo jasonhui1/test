@@ -2,26 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56011389-54a6-408b-b9af-f595cb87b5c6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/client/css/custom/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/client/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/client/img/wallet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/client/css/other/bootstrap.min.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/PasswordHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/PasswordHash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ServerStart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/models/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/models/Services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TransactionDatabase.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/css/custom/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/css/custom/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/img/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/badCredentials.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/badCredentials.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/client/html/public/signUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/html/public/signUp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/js/custom/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/js/custom/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client/js/custom/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client/js/custom/signup.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -152,11 +141,11 @@
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\css\other" />
+      <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\img" />
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\js\custom" />
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources" />
       <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\html\public" />
-      <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client\html" />
-      <recent name="C:\Users\alfie\OneDrive\Documents\GitHub\CSED2\src\main\resources\client" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -209,7 +198,7 @@
       <workItem from="1583688479331" duration="10738000" />
       <workItem from="1583760278861" duration="2669000" />
       <workItem from="1583772617992" duration="2733000" />
-      <workItem from="1583927882468" duration="1110000" />
+      <workItem from="1583927882468" duration="1746000" />
     </task>
     <task id="LOCAL-00001" summary="Updated Readme">
       <created>1583153610095</created>
@@ -260,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583760857783</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added index page">
+      <created>1583933137245</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1583933137245</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +282,8 @@
     <MESSAGE value="Created login html and css&#10;Added login js file which submits login form to server&#10;Added userController which deals with login&#10;Added password hash class&#10;Added ability to add new users to our database&#10;Added detail check&#10;Login system is functional" />
     <MESSAGE value="Created Signup page&#10;Added signup server end&#10;need to add more validation on signup details" />
     <MESSAGE value="Added another table transaction type ito the database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added another table transaction type ito the database" />
+    <MESSAGE value="Added index page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added index page" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
 </project>

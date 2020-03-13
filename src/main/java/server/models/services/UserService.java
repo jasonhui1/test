@@ -52,6 +52,16 @@ public class UserService {
         return null;
     }
 
+    public static void signOut(User user){
+        for(User mUser : users){
+            //TODO edit user .equals function
+            if(mUser.equals(user)){
+                users.remove(mUser);
+                return;
+            }
+        }
+    }
+
     /**
      * Verify user login details are correct
      * @author Alfred Jones

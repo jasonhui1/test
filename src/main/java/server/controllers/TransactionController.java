@@ -26,7 +26,11 @@ public class TransactionController {
                                  @FormParam("type") String type,
                                  @FormParam("amount") String amount,
                                  @FormParam("date") String date){
+
+
         User user = UserService.ValidateSessionToken(sessionCookie);
+
+
         if (user != null) {
             //Add the transaction
             Logger.log("A user has added a transaction");

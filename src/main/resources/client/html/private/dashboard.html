@@ -1,10 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Dashboard</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
 </head>
 <body>
-Welcome to the dashboard
+<nav class="navbar navbar-dark fixed-top p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account">Account</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="container text-center">
+                <div class="row pb-5">
+                    <div class="col-lg-12">
+                        <canvas id="myChart" ></canvas>
+                    </div>
+                </div>
+                <div class="row py-5">
+                    <div class="col-md-5 h-100">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                Spending
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item active">Cras justo odio</li>
+                                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                                    <li class="list-group-item">Morbi leo risus</li>
+                                    <li class="list-group-item">Porta ac consectetur ac</li>
+                                    <li class="list-group-item">Vestibulum at eros</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 h-100">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                Income
+                            </div>
+                            <div class="card-body h-100">
+                                <ul class="list-group">
+                                    <li class="list-group-item active">Cras justo odio</li>
+                                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                                    <li class="list-group-item">Morbi leo risus</li>
+                                    <li class="list-group-item">Porta ac consectetur ac</li>
+                                    <li class="list-group-item">Vestibulum at eros</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card">
+                            <div class="card-header">
+                                Buttons and things
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
 </body>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/Chart.min.js"></script>
+<script src="js/dashboard.js"></script>
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
 </html>

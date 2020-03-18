@@ -208,6 +208,23 @@ public class UserService {
     }
 
 
+    public static void updatePassword(User user, String password){
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement("UPDATE User SET password_hash = ?, password_salt = ? WHERE id = ?");
+            byte[] salt = PasswordHash.getSalt();
+
+            if (statement != null) {
+                statement.setString(1, PasswordHash.hash(password, salt)); //Hash the password
+                statement.setBytes(2, salt);
+                statement.setInt(3, user.getId());
+                statement.executeUpdate();
+            }
+        } catch (SQLException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     /**
      * @author Alfred Jones
      * @author Gets all the users from out database and returns them in an array

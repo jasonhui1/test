@@ -5,6 +5,7 @@ import server.models.User;
 import server.models.services.UserService;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 
@@ -78,4 +79,47 @@ public class UserController {
 
         return "success";
     }
+
+
+    /**
+     *
+     * @param email             the new email of the user to be changed to
+     * @param firstName         Change user's first name to this name
+     * @param lastName          change user's last name to this name
+     * @param newPassword       the new password of the user
+     * @author Matthew Johnson
+     */
+    @POST
+    @Path("amend")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public void amend(@FormParam("email") String email,
+                      @FormParam("firstName") String firstName,
+                      @FormParam("lastName") String lastName,
+                      @FormParam("newPassword") String newPassword,
+                      @CookieParam("sessionToken") Cookie sessionCookie) {
+        User user = UserService.ValidateSessionToken(sessionCookie);
+
+
+        try {
+
+            //if user is null, no user signed in, otherwise, that's the user which is signed in
+            if (user != null && UserService.validEmail(email)){
+                user.updateUser(email, firstName,lastName);
+                UserService.updateDetails(user);
+
+                if (!newPassword.isEmpty()){
+                    UserService.updatePassword(user, newPassword);
+                }
+                Logger.log("Updated details of user " + user.getId());
+
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

@@ -1,5 +1,6 @@
 package server.controllers;
 
+import org.eclipse.jetty.server.session.Session;
 import server.Logger;
 import server.models.User;
 import server.models.services.UserService;
@@ -92,7 +93,6 @@ public class UserController {
     @POST
     @Path("amend")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.TEXT_PLAIN)
     public void amend(@FormParam("email") String email,
                       @FormParam("firstName") String firstName,
                       @FormParam("lastName") String lastName,
@@ -120,6 +120,21 @@ public class UserController {
             e.printStackTrace();
         }
 
+    }
+
+    
+    @POST
+    @Path("delete")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void delete(@CookieParam("sessionToken") Cookie sessionCookie){
+        User user = UserService.ValidateSessionToken(sessionCookie);
+        try {
+            assert user != null;
+            Logger.log("About to delete user " + user.getId());
+            UserService.deleteUser(user);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
 }

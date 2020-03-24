@@ -7,7 +7,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
 </head>
-<body onload="changeDetailsRequest()">
+<body>
 
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
@@ -58,7 +58,9 @@
                             <label for="newPasswordInput2">Please enter new password again</label>
                             <input type="password" class="form-control" id="newPasswordInput2" placeholder="Confirm New Password">
                         </div>
-                        <button type="submit" class="btn btn-primary">Change Details</button>
+                        <button type="submit" onclick="changeDetailsRequest()" class="btn btn-primary">Change Details</button>
+                        <button onclick="deleteFunction()"  class="btn btn-secondary">Delete</button>
+
                     </form>
                 </div>
             </div>

@@ -24,6 +24,18 @@ function changeDetailsRequest(){
     });
 }
 
+function deleteFunction() {
+    if (confirm("Are you sure you want to delete your account?")) {
+        $.ajax({
+            url: "/user/delete",   //url location of request handler
+            type: "POST",   //Type of request
+
+        });
+        window.location.href = "/login" //make go to login page
+    }
+}
+
+
 
 //author Alfie Jones
 //Checks the passwords to ensure they're valid

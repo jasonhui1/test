@@ -149,16 +149,18 @@ public class UserService {
     /**
      *
      * @author Alfred Jones
+     * Edited by Matthew Johnson - bug in deletion
      * Deletes the specified user from our database
-     * @param userID the id of the user to delete
+     * @param user the user to delete
      * @throws SQLException something went wrong
      */
-    public static void deleteUser(int userID) throws SQLException {
+    public static void deleteUser(User user) throws SQLException {
         //The database manager will handle foreign keys references
         PreparedStatement statement = DatabaseConnection.newStatement("DELETE FROM User WHERE id = ?");
         if (statement != null) {
-            statement.setInt(1, userID);
-            statement.executeQuery();
+            statement.setInt(1, user.getId());
+            statement.executeUpdate();
+            Logger.log("Deleted user " + user.getId() );
         }
     }
 
@@ -208,6 +210,12 @@ public class UserService {
     }
 
 
+    /**
+     * change in password requires additional steps, so done in different function
+     * @param user - the user of details to change
+     * @param password - the password to change to.
+     * @Author Matthew Johnson
+     */
     public static void updatePassword(User user, String password){
         try {
             PreparedStatement statement = DatabaseConnection.newStatement("UPDATE User SET password_hash = ?, password_salt = ? WHERE id = ?");

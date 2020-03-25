@@ -5,6 +5,7 @@ import server.models.User;
 import server.models.services.UserService;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
 import java.sql.SQLException;
 
@@ -78,4 +79,23 @@ public class UserController {
 
         return "success";
     }
+
+
+    /**
+     * @author Alfred Jones
+     * Handles the logout request
+     */
+    @POST
+    @Path("logout")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void add(@CookieParam("sessionToken") Cookie sessionCookie) {
+
+        User user = UserService.ValidateSessionToken(sessionCookie);
+
+        if(user != null){
+            UserService.users.remove(user);
+        }
+
+    }
+
 }

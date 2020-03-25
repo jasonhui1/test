@@ -1,13 +1,20 @@
 package server.controllers;
 
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import server.Logger;
+import server.models.Income;
+import server.models.Transaction;
 import server.models.User;
+import server.models.services.TransactionService;
 import server.models.services.UserService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("transaction/")
 public class TransactionController {
@@ -43,6 +50,102 @@ public class TransactionController {
         return "success";
     }
 
+
+    /**
+     * @author Alfred Jones
+     * @param sessionCookie The cookie of the user
+     * @return spending in json format
+     */
+    @GET
+    @Path("get/spending")
+    @Produces(MediaType.APPLICATION_JSON)
+    @SuppressWarnings("unchecked")
+    public String getRelevantTransactions(@CookieParam("sessionToken") Cookie sessionCookie) {
+        JSONObject response = new JSONObject();
+        User user = UserService.ValidateSessionToken(sessionCookie);
+        if(user != null) {
+            ArrayList<Transaction> transactions = new ArrayList<>();
+            //Read shifts into arrayList
+            String status = TransactionService.getRelevantTransactions(transactions, user.getId());
+            if (status.equals("OK")) {
+                //Shifts were successfully added to list
+                //Convert shifts to json format and return to client
+                return TransactionListTOJSON(transactions);
+            } else {
+                //Something went wrong, return and error along with the error message
+                response.put("error", status);
+                return response.toString();
+            }
+        }else{
+            //Return an error if the user doesn't have a valid session token
+            response.put("error", "Invalid Session Token");
+            return response.toString();
+        }
+    }
+
+    /**
+     * @author Alfred Jones
+     * @param sessionCookie The cookie of the user
+     * @return income in json format
+     */
+    @GET
+    @Path("get/income")
+    @Produces(MediaType.APPLICATION_JSON)
+    @SuppressWarnings("unchecked")
+    public String getRelevantIncome(@CookieParam("sessionToken") Cookie sessionCookie) {
+        JSONObject response = new JSONObject();
+        User user = UserService.ValidateSessionToken(sessionCookie);
+        if(user != null) {
+            ArrayList<Income> incomes = new ArrayList<>();
+            //Read income into arrayList
+            String status = TransactionService.getRelevantIncome(incomes, user.getId());
+            if (status.equals("OK")) {
+                //incomes were successfully added to list
+                //Convert incomes to json format and return to client
+                return IncomeListTOJSON(incomes);
+            } else {
+                //Something went wrong, return and error along with the error message
+                response.put("error", status);
+                return response.toString();
+            }
+        }else{
+            //Return an error if the user doesn't have a valid session token
+            response.put("error", "Invalid Session Token");
+            return response.toString();
+        }
+    }
+
+    /**
+     * @author Alfred Jones
+     * @return json
+     * Convert spending list to json format
+     */
+    @SuppressWarnings("unchecked")
+    private String TransactionListTOJSON(List<Transaction> list) {
+        JSONArray messageList = new JSONArray();
+        //Loop through each transaction
+        for (Transaction t: list) {
+            //convert to json and add to new list
+            messageList.add(t.toJSON());
+        }
+        return messageList.toString();
+    }
+
+    /**
+     * @author Alfred Jones
+     * @return json
+     * Convert income list to json format
+     */
+    @SuppressWarnings("unchecked")
+    private String IncomeListTOJSON(List<Income> list) {
+        JSONArray messageList = new JSONArray();
+        //Loop through each income
+        for (Income t: list) {
+            //convert to json and add to new list
+            messageList.add(t.toJSON());
+        }
+        return messageList.toString();
+    }
 
 
 }

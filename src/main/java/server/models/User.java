@@ -50,4 +50,22 @@ public class User {
         return id;
     }
 
+
+
+
+    @Override
+    public boolean equals(Object that){
+        if(this == that) return true;//if both of them points the same address in memory
+
+        if(!(that instanceof User)) return false; // if "that" is not a People or a childclass
+
+        User user = (User)that; // than we can cast it to People safely
+
+        return this.getSessionToken().equals(user.getSessionToken());
+    }
+
+
+
+
+
 }

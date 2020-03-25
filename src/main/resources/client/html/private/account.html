@@ -5,14 +5,14 @@
     <title>Dashboard</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/dashboardLayout.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <a class="nav-link" onclick="logoutRequest()" >Logout</a>
         </li>
     </ul>
 </nav>
@@ -39,5 +39,9 @@
         </main>
     </div>
 </div>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/logout.js"></script>
 </body>
 </html>

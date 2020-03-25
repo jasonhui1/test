@@ -13,7 +13,7 @@ import java.util.UUID;
 public class User {
 
 
-    private final String firstName, lastName, email;
+    private String firstName, lastName, email;
     private final int id;
     private final String sessionToken;
 
@@ -25,6 +25,30 @@ public class User {
         this.lastName = lastName;
         this.sessionToken = UUID.randomUUID().toString();   //Generate a session token to identify the user
         this.id = id;
+    }
+
+
+    /**
+     * method to update the user details in the class so that when update details method is run in UserService, the
+     * correct details are updated on database
+     * @param email - email to be updated to
+     * @param firstName - new firstname to be updated to
+     * @param lastName - new lastname to be updated to
+     * @Author Matthew Johnson
+     */
+    public void updateUser(String email, String firstName, String lastName){
+        /*Checks if what is entered is blank. If so, it shouldn't be changed. If it contains something, change detail*/
+        if (!email.isEmpty()){
+            this.email = email;
+        }
+
+        if (!firstName.isEmpty()){
+            this.firstName = firstName;
+        }
+
+        if (!lastName.isEmpty()){
+            this.lastName = lastName;
+        }
     }
 
     //return users first name

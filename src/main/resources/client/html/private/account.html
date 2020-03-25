@@ -8,6 +8,7 @@
     <link href="css/dashboardLayout.css" rel="stylesheet">
 </head>
 <body>
+
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
     <ul class="navbar-nav px-3">
@@ -33,8 +34,41 @@
         </nav>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
+            <div class = "text-center d-flex h-100">
+                <div class = "center">
+                    <form id="changeDetailsForm" >
+                        <h2 class = "pb-2">Enter Details you Would Like to Change</h2>
+                        <div class="form-group">
+                            <label for="emailInput">Email address</label>
+                            <input type="email" class="form-control" id="emailInput" placeholder="Email address" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control" id="firstName" placeholder="First name" name="firstName">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control" id="lastName" placeholder="Last name" name="lastName">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPasswordInput1">New Password</label>
+                            <input type="password" class="form-control" id="newPasswordInput1" placeholder="New Password" name="newPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPasswordInput2">Please enter new password again</label>
+                            <input type="password" class="form-control" id="newPasswordInput2" placeholder="Confirm New Password">
+                        </div>
+                        <button type="submit" onload="changeDetailsRequest()" class="btn btn-primary">Change Details</button>
+                        <button onclick="deleteFunction()"  class="btn btn-secondary">Delete</button>
 
+                    </form>
+                </div>
+            </div>
 
+            <script src="js/jquery-3.4.1.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/js.cookie-2.2.1.min.js"></script>
+            <script src="js/changeDetails.js"></script>
 
         </main>
     </div>

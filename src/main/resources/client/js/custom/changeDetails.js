@@ -15,11 +15,11 @@ function changeDetailsRequest(){
                     } else if (response.startsWith("BadDetails:")) {
                         //TODO Highlight fields with bad data rather than just displaying a message
                         alert(response);
-                    } else {
-                        window.location.href = "/login";    //redirect to dashboard
                     }
                 }
             });
+            //TODO Figure out how to redirect to dashboard after
+            window.location.href = "/dashboard";
         }
     });
 }

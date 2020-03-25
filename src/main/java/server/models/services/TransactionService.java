@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TransactionService {
 
-    private final static List<Object> transactionTypes = getTypes("Transaction_Type");
+    private final static List<Object> transactionTypes = getTypes("Spending_Type");
     private final static List<Object> incomeTypes = getTypes("Income_Type");
 
     /**
@@ -33,7 +33,7 @@ public class TransactionService {
                     //Loop through all types
                     while (results.next()) {
                         //Add types to list
-                        if(tableName.equals("Transaction_Type")) {
+                        if(tableName.equals("Spending_Type")) {
                             mTypes.add(new TransactionType(results.getInt("id"), results.getString("name"), results.getString("description")));
                         }else if(tableName.equals("Income_Type")){
                             mTypes.add(new IncomeType(results.getInt("id"), results.getString("name"), results.getString("description")));
@@ -88,7 +88,7 @@ public class TransactionService {
     public static String getRelevantTransactions(List<Transaction> transactionList, int userID){
         transactionList.clear();
         try {
-            PreparedStatement statement = DatabaseConnection.newStatement("SELECT date, id, transaction_id, name, amount, description FROM \"Transaction\" WHERE user_id = ? ORDER BY date DESC");
+            PreparedStatement statement = DatabaseConnection.newStatement("SELECT date, id, spending_id, name, amount, description FROM Spending WHERE user_id = ? ORDER BY date DESC");
             if (statement != null) {
                 //We only want transactions from our user
                 statement.setInt(1, userID);
@@ -97,13 +97,13 @@ public class TransactionService {
                     //Loop through all transactions
                     while (results.next()) {
                         //Add transaction to list
-                        transactionList.add(new Transaction(results.getInt("id"), results.getInt("amount"), results.getInt("date"), results.getString("name"), results.getString("description"), results.getInt("transaction_id")));
+                        transactionList.add(new Transaction(results.getInt("id"), results.getInt("amount"), results.getInt("date"), results.getString("name"), results.getString("description"), results.getInt("spending_id")));
                     }
                 }
             }
         } catch (SQLException e) {
             //An error occurred
-            String error = "Database error - can't select all from 'Transaction' table: " + e.getMessage();
+            String error = "Database error - can't select all from 'Spending_Type' table: " + e.getMessage();
             e.printStackTrace();
             return error;
         }

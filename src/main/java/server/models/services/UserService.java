@@ -161,6 +161,7 @@ public class UserService {
             statement.setInt(1, user.getId());
             statement.executeUpdate();
             Logger.log("Deleted user " + user.getId() );
+            users.remove(user);
         }
     }
 

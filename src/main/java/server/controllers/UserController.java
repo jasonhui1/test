@@ -83,6 +83,25 @@ public class UserController {
 
 
     /**
+     * @author Alfred Jones
+     * Handles the logout request
+     */
+    @POST
+    @Path("logout")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void add(@CookieParam("sessionToken") Cookie sessionCookie) {
+
+        User user = UserService.ValidateSessionToken(sessionCookie);
+
+        if(user != null){
+            UserService.users.remove(user);
+        }
+
+    }
+
+
+
+    /**
      *
      * @param email             the new email of the user to be changed to
      * @param firstName         Change user's first name to this name
@@ -122,7 +141,7 @@ public class UserController {
 
     }
 
-    
+
     @POST
     @Path("delete")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)

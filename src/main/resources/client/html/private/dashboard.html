@@ -5,14 +5,17 @@
     <title>Dashboard</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/dashboardLayout.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/datatables.min.css" rel="stylesheet" >
+    <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet" >
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <a class="nav-link" onclick="logoutRequest()" >Logout</a>
         </li>
     </ul>
 </nav>
@@ -31,55 +34,64 @@
                 </ul>
             </div>
         </nav>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div class="container text-center">
+        <main role="main" class="col-lg-10 px-4">
+            <div class="container-fluid text-center">
                 <div class="row pb-5">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 container">
                         <canvas id="myChart" ></canvas>
                     </div>
                 </div>
                 <div class="row py-5">
-                    <div class="col-md-5 h-100">
+                    <div class="col-md-12 h-100">
                         <div class="card h-100">
                             <div class="card-header">
-                                Spending
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item active">Cras justo odio</li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Morbi leo risus</li>
-                                    <li class="list-group-item">Porta ac consectetur ac</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 h-100">
-                        <div class="card h-100">
-                            <div class="card-header">
-                                Income
+                                <div class="panel-heading text-center">
+                                    <!-- Nav pills -->
+                                    <nav>
+                                        <div class="nav nav-tabs w-100" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-spending-tab" data-toggle="tab" href="#nav-spending" role="tab" aria-controls="nav-spending" aria-selected="true">Spending</a>
+                                            <a class="nav-item nav-link" id="nav-income-tab" data-toggle="tab" href="#nav-income" role="tab" aria-controls="nav-income" aria-selected="false">Income</a>
+                                            <button class="btn btn-primary float-right ml-auto">Add payment</button>
+                                        </div>
+                                    </nav>
+                                </div>
                             </div>
                             <div class="card-body h-100">
-                                <ul class="list-group">
-                                    <li class="list-group-item active">Cras justo odio</li>
-                                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                                    <li class="list-group-item">Morbi leo risus</li>
-                                    <li class="list-group-item">Porta ac consectetur ac</li>
-                                    <li class="list-group-item">Vestibulum at eros</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="card">
-                            <div class="card-header">
-                                Buttons and things
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="tab-content text-left" id="nav-tabContent">
+                                    <!-- Spending table -->
+                                    <div class="tab-pane fade " id="nav-spending" role="tabpanel" aria-labelledby="nav-spending-tab">
+                                        <table id="spending_table" class="table table-striped table-bordered" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Type</th>
+                                                <th>Date</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="spending_data">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- Income table -->
+                                    <div class="tab-pane fade show active" id="nav-income" role="tabpanel" aria-labelledby="nav-income-tab">
+                                        <table id="income_table" class="table table-striped table-bordered" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Type</th>
+                                                <th>Date</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="income_data">
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -89,8 +101,12 @@
     </div>
 </div>
 </body>
+<script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/Chart.min.js"></script>
+<script src="js/datatables.min.js"></script>
+<script src="js/dataTables.bootstrap4.min.js"></script>
+<script src="js/logout.js"></script>
 <script src="js/dashboard.js"></script>
 <script>
     const ctx = document.getElementById('myChart').getContext('2d');

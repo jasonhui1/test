@@ -7,7 +7,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dashboardLayout.css" rel="stylesheet">
 </head>
-<body>
+<body onload="changeDetailsRequest()">
 
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
@@ -58,24 +58,20 @@
                             <label for="newPasswordInput2">Please enter new password again</label>
                             <input type="password" class="form-control" id="newPasswordInput2" placeholder="Confirm New Password">
                         </div>
-                        <button type="submit" onload="changeDetailsRequest()" class="btn btn-primary">Change Details</button>
-                        <button onclick="deleteFunction()"  class="btn btn-secondary">Delete</button>
-
+                        <button type="submit" onload="" class="btn btn-primary">Change Details</button>
+                        <button onclick="deleteFunction()" class="btn btn-secondary">Delete</button>
                     </form>
+
                 </div>
             </div>
-
-            <script src="js/jquery-3.4.1.min.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/js.cookie-2.2.1.min.js"></script>
-            <script src="js/changeDetails.js"></script>
-
         </main>
     </div>
 </div>
 
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/js.cookie-2.2.1.min.js"></script>
+<script src="js/changeDetails.js"></script>
 <script src="js/logout.js"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@ function deleteFunction() {
             url: "/user/delete",   //url location of request handler
             type: "POST",   //Type of request
             success: response => {  //If a response is received from server
-                window.location.href = "login"; //make go to login page
+                window.location.href = "../"; //make go to login page
             }
 
         });

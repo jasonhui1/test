@@ -1,8 +1,8 @@
 //Author Alfred
 //Run on page startup
 $(document).ready(function () {
-    getSpending();
     getIncome();
+    getSpending();
 });
 
 

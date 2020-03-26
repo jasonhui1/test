@@ -2,10 +2,7 @@ package server.models.services;
 
 import server.DatabaseConnection;
 import server.Logger;
-import server.models.Income;
-import server.models.IncomeType;
-import server.models.Transaction;
-import server.models.TransactionType;
+import server.models.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,6 +14,37 @@ public class TransactionService {
 
     private final static List<Object> transactionTypes = getTypes("Spending_Type");
     private final static List<Object> incomeTypes = getTypes("Income_Type");
+
+    /**
+     * @author Jason
+     * Add transaction the database
+     * Form parameters
+     *
+     */
+    public static void addTransaction(User user, int amount, String name, String description, String type, String date){
+
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement("INSERT INTO Spending (date, user_id, spending_id, name, description, amount) VALUES (?, ?, ?, ?, ?, ?)");
+            Logger.log("trying to add to database");
+
+            if(statement != null){
+                //Add data to query
+                statement.setString(1, date);
+                statement.setInt(2, user.getId());
+                statement.setInt(3, getTransactionId(type)); //spending_id
+                statement.setString(4, name); //name
+                statement.setString(5, description); //description
+                statement.setInt(6, amount); //amount
+
+                statement.executeUpdate();
+                Logger.log("transaction added to database");
+            }
+        } catch (Exception e){
+            Logger.log("Failed");
+            e.printStackTrace();
+        }
+
+    }
 
     /**
      * @author Alfred
@@ -62,6 +90,27 @@ public class TransactionService {
             }
         }
         return null;
+    }
+
+    /**
+     * @author Jason
+     * get the id of the type
+     * @param name of the type
+     * @return the type
+     */
+
+    public static int getTransactionId(String name){
+        Logger.log("Selected " + name);
+        for (Object obj: transactionTypes) {
+            TransactionType type = (TransactionType) obj;
+            Logger.log("All names: " + type.getName());
+            Logger.log(name + " " + type.getName() + name.equals(type.getName()));
+            if(type.getName().equals(name)){
+
+                return type.getId();
+            }
+        }
+        return 0;
     }
 
     /**

@@ -25,7 +25,6 @@ public class TransactionService {
 
         try {
             PreparedStatement statement = DatabaseConnection.newStatement("INSERT INTO Spending (date, user_id, spending_id, name, description, amount) VALUES (?, ?, ?, ?, ?, ?)");
-            Logger.log("trying to add to database");
 
             if(statement != null){
                 //Add data to query
@@ -40,7 +39,7 @@ public class TransactionService {
                 Logger.log("transaction added to database");
             }
         } catch (Exception e){
-            Logger.log("Failed");
+            Logger.log("Failed to add the transaction to database");
             e.printStackTrace();
         }
 
@@ -100,11 +99,9 @@ public class TransactionService {
      */
 
     public static int getTransactionId(String name){
-        Logger.log("Selected " + name);
+
         for (Object obj: transactionTypes) {
             TransactionType type = (TransactionType) obj;
-            Logger.log("All names: " + type.getName());
-            Logger.log(name + " " + type.getName() + name.equals(type.getName()));
             if(type.getName().equals(name)){
 
                 return type.getId();

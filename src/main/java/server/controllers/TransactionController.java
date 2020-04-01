@@ -13,7 +13,10 @@ import server.models.services.UserService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.MediaType;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Path("transaction/")
@@ -49,6 +52,48 @@ public class TransactionController {
 
         return "success";
     }
+    /**
+     * @author Ceri Griffiths
+     *
+     * This is a template for how we can send our data to add an income to the database
+     */
+    @POST
+    @Path("submit/income")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String AddIncome(@CookieParam("sessionToken") Cookie sessionCookie,
+                                 @FormParam("incomeName") String name,
+                                 @FormParam("incomeDate") String date,
+                                 @FormParam("incomeAmount") float amount,
+                                 @FormParam("incomeType") String type,
+                                 @FormParam("incomeDescription") String description) throws ParseException {
+
+        User user = UserService.ValidateSessionToken(sessionCookie);
+        //Date format
+        Date formatDate = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(date);
+        long datems = formatDate.getTime();
+        //Put date in string in millisecond
+        String dateToDatebase = Long.toString(datems/1000);
+        int pence = (int)(amount*100);
+
+        if (user != null) {
+            //Add the transaction
+            try {
+                TransactionService.addIncome(user, name, dateToDatebase,pence, type, description);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+            Logger.log("A user has added an income form");
+
+        } else {
+            //The user isn't logged in and shouldn't be able to make database changes
+            Logger.log("An unauthorised attempted at adding an income was occurred");
+            return "error";
+        }
+
+        return  "type: " + type +  " date: " + date;
+    }
+
 
 
     /**

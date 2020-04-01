@@ -90,3 +90,45 @@ function renderSpending(spending){
         `<td>${spending.amount/100}</td>` +
         `</tr>`;
 }
+
+//Author Ceri
+//checks if all forms are completed and simulates button press
+function submitIncome(){
+
+    loginForm = $(".incomeForm"); //Select all forms
+    buttons = $(".btn-income-submit"); //Select the hidden submit button in all forms
+    event.preventDefault();
+    //Hide the submit successful info
+    $('#informDetails').attr('hidden',true);
+    for(i= 0; i  < loginForm.length; i++){
+        currentForm = loginForm.eq(i);
+        button = buttons.eq(i);
+        button.click();
+
+    }
+
+}
+
+//Author Ceri
+//sends data to the database
+function addIncome(event, filledForm){
+
+    form = $(filledForm);
+    divForm = $(".income_columns").has(filledForm)
+    event.preventDefault();
+    $.ajax({
+        url: "/transaction/submit/income",   //url location of request handler
+        type: "POST",   //Type of request
+        data: form.serialize(),    //extract data from form
+        success: response => {  //If a response is received from server
+            //Remove the form after submitted
+            divForm.remove();
+            //Show submitted successful to user
+            $('#incomeDetails').removeAttr('hidden');
+        }
+    });
+
+
+
+
+}

@@ -52,6 +52,7 @@
                                             <a class="nav-item nav-link active" id="nav-spending-tab" data-toggle="tab" href="#nav-spending" role="tab" aria-controls="nav-spending" aria-selected="true">Spending</a>
                                             <a class="nav-item nav-link" id="nav-income-tab" data-toggle="tab" href="#nav-income" role="tab" aria-controls="nav-income" aria-selected="false">Income</a>
                                             <button class="btn btn-primary float-right ml-auto">Add payment</button>
+                                            <button class="btn btn-primary float-right" data-toggle="modal" data-target="#incomeModal">Add income</button>
                                         </div>
                                     </nav>
                                 </div>
@@ -98,6 +99,65 @@
                 </div>
             </div>
         </main>
+    </div>
+    <div class="modal fade" id="incomeModal" tabindex="-1" role="dialog" aria-labelledby="incomeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="incomeModalLabel">Add income</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="pb-2 font-weight-light text-success text-center" id="incomeDetails" hidden>Valid Form submitted</h4>
+                    <div class="income_columns">
+                        <form class="incomeForm" onsubmit="addIncome(event, this)">
+                            <div class="form-group mb-3">
+                                <label for="income-name" class="col-form-label">Income Name:</label>
+                                <input type="text" class="form-control" id="income-name" name="incomeName">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="income-date" class="col-form-label">Income Date:</label>
+                                <input type="datetime-local" class="form-control income-date" id="income-date" name="incomeDate" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="income-amount" class="col-form-label">Income Amount:</label>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">£</span>
+                                </div>
+                                <input type="number" class="form-control" id="income-amount" name="incomeAmount">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label class="col-form-label">Income Type:</label>
+                                <select required name="incomeType" class="form-control">
+                                    <option value="" selected disabled hidden>Select a category</option>
+                                    <option value="Salary">Salary</option>
+                                    <option value="Pocket money">Pocket money</option>
+                                    <option value="Loan">Loan </option>
+                                    <option value="Student Loan">Student Loan </option>
+                                    <option value="Grant">Grant </option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="income-description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="income-description" rows="3" name="incomeDescription"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-income-submit" hidden>Submit Form</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary " onclick="submitIncome()">Add</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

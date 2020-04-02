@@ -45,6 +45,36 @@ public class TransactionService {
     }
 
     /**
+     * @author Jason
+     * Add transaction the database
+     * Form parameters
+     *
+     */
+    public static void addTransaction(User user, int amount, String name, String description, String type, String date){
+
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement("INSERT INTO Spending (date, user_id, spending_id, name, description, amount) VALUES (?, ?, ?, ?, ?, ?)");
+
+            if(statement != null){
+                //Add data to query
+                statement.setString(1, date);
+                statement.setInt(2, user.getId());
+                statement.setInt(3, getTransactionId(type)); //spending_id
+                statement.setString(4, name); //name
+                statement.setString(5, description); //description
+                statement.setInt(6, amount); //amount
+
+                statement.executeUpdate();
+                Logger.log("transaction added to database");
+            }
+        } catch (Exception e){
+            Logger.log("Failed to add the transaction to database");
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
      * @author Alfred
      * @param tableName the name of the table
      * @return a list of items from the table
@@ -88,6 +118,25 @@ public class TransactionService {
             }
         }
         return null;
+    }
+
+    /**
+     * @author Jason
+     * get the id of the type
+     * @param name of the type
+     * @return the type
+     */
+
+    public static int getTransactionId(String name){
+
+        for (Object obj: transactionTypes) {
+            TransactionType type = (TransactionType) obj;
+            if(type.getName().equals(name)){
+
+                return type.getId();
+            }
+        }
+        return 0;
     }
 
     /**

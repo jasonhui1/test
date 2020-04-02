@@ -33,24 +33,37 @@ public class TransactionController {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public String AddTransaction(@CookieParam("sessionToken") Cookie sessionCookie,
+                                 @FormParam("amount") float amount,
+                                 @FormParam("name") String name,
+                                 @FormParam("description") String description,
                                  @FormParam("type") String type,
-                                 @FormParam("amount") String amount,
-                                 @FormParam("date") String date){
-
+                                 @FormParam("date") String date) throws ParseException {
 
         User user = UserService.ValidateSessionToken(sessionCookie);
-
+        Logger.log("new transaction");
+        //Date format
+        Date formatDate = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(date);
+        long datems = formatDate.getTime();
+        //Put date in string in millisecond
+        String dateToDatebase = Long.toString(datems/1000);
+        int pence = (int)(amount*100);
 
         if (user != null) {
             //Add the transaction
+            try {
+                TransactionService.addTransaction(user, pence, name,description, type, dateToDatebase);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
             Logger.log("A user has added a transaction");
+
         } else {
             //The user isn't logged in and shouldn't be able to make database changes
             Logger.log("An unauthorised attempted at adding a transaction was occurred");
             return "error";
         }
 
-        return "success";
+        return  "success";
     }
     /**
      * @author Ceri Griffiths

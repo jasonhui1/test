@@ -110,7 +110,7 @@ function addInputColumn(clickedButton){
     //Select the form that has this button
     divForm = $(".spending_columns").has(clickedButton);
     //Content of a new column
-    $(divForm).after('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label> Amount</label> <div class="input-group"> <div class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </div> <input type="number" class="form-control" name="amount" min="0" step=".01" placeholder="Transaction amount" required> </div> </div> <div class="form-group mb-3"> <label> Name</label> <input type="text" class="form-control" placeholder="Transaction name" name="name" required> </div> <div class="form-group mb-3"> <label> Description (optional) </label> <input type="text" class="form-control" placeholder="Transaction description" name="description" > </div> <div class="form-group mb-3"> <label> Select a category</label> <div class="input-spending"> <div class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <div class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </div> </div> </div> </div> <div class="form-group mb-3"> <label> Date</label> <input type="datetime-local" class="form-control spending-date" name="date"  required> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
+    $(divForm).after('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label> Amount</label> <div class="input-group"> <div class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </div> <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required> </div> </div> <div class="form-group mb-3"> <label> Name</label> <input type="text" class="form-control" placeholder="Transaction name" name="name" required> </div> <div class="form-group mb-3"> <label> Description (optional) </label> <input type="text" class="form-control" placeholder="Transaction description" name="description" > </div> <div class="form-group mb-3"> <label> Select a category</label> <div class="input-spending"> <div class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <div class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </div> </div> </div> </div> <div class="form-group mb-3"> <label> Date</label> <input type="datetime-local" class="form-control spending-date" name="date"  required> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
     //Set the date to the current time
     setFormDate(divForm.next());
 
@@ -145,14 +145,14 @@ function removeInputColumn(clickedButton){
 //Simulate click, submit in all forms when the user clicks the submit button
 function submitSpending(){
 
-    loginForm = $(".spendingForm"); //Select all forms
+    form = $(".spendingForm"); //Select all forms
     buttons = $(".btn-spending-submit"); //Select the hidden submit button in all forms
     event.preventDefault();
     //Hide the submit successful info
     $('#informDetails').attr('hidden',true);
     //Loop all forms and submit them
-    for(i= 0; i  < loginForm.length; i++){
-        currentForm = loginForm.eq(i);
+    for(i= 0; i  < form.length; i++){
+        currentForm = form.eq(i);
         button = buttons.eq(i);
         button.click();
 

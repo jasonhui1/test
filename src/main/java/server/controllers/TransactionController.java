@@ -63,7 +63,7 @@ public class TransactionController {
             return "error";
         }
 
-        return  "type: " + type +  " date: " + date;
+        return  "success";
     }
 
 

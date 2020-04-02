@@ -15,6 +15,35 @@ public class TransactionService {
     private final static List<Object> transactionTypes = getTypes("Spending_Type");
     private final static List<Object> incomeTypes = getTypes("Income_Type");
 
+
+    /**
+     * @author Ceri
+     * form parameters
+     */
+    public static void addIncome(User user, String name, String date, int amount, String type, String description){
+
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement("INSERT INTO Income (name, date, amount, type_id, description, user_id) VALUES (?, ?, ?, ?, ?, ?)");
+            Logger.log("trying to add to database");
+
+            if(statement != null){
+                //Add data to query
+                statement.setString(1, name);
+                statement.setString(2, date);
+                statement.setInt(3, amount);
+                statement.setInt(4, getIncomeId(type));
+                statement.setString(5, description);
+                statement.setInt(6, user.getId());
+                statement.executeUpdate();
+                Logger.log("transaction added to database");
+            }
+        } catch (Exception e){
+            Logger.log("Failed");
+            e.printStackTrace();
+        }
+
+    }
+
     /**
      * @author Jason
      * Add transaction the database
@@ -123,6 +152,20 @@ public class TransactionService {
             }
         }
         return null;
+    }
+
+    public static int getIncomeId(String name){
+        Logger.log("Selected " + name);
+        for (Object obj: incomeTypes) {
+            IncomeType type = (IncomeType) obj;
+            Logger.log("All names: " + type.getName());
+            Logger.log(name + " " + type.getName() + name.equals(type.getName()));
+            if(type.getName().equals(name)){
+
+                return type.getId();
+            }
+        }
+        return 0;
     }
 
     /**

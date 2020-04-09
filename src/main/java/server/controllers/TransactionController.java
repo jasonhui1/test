@@ -37,21 +37,33 @@ public class TransactionController {
                                  @FormParam("name") String name,
                                  @FormParam("description") String description,
                                  @FormParam("type") String type,
-                                 @FormParam("date") String date) throws ParseException {
+                                 @FormParam("date") String date,
+                                 @FormParam("recurring_interval") float interval,
+                                 @FormParam("end_date") String endDate) throws ParseException {
 
         User user = UserService.ValidateSessionToken(sessionCookie);
         Logger.log("new transaction");
         //Date format
-        Date formatDate = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(date);
+        Date formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(date);
         long datems = formatDate.getTime();
         //Put date in string in millisecond
         String dateToDatebase = Long.toString(datems/1000);
         int pence = (int)(amount*100);
+        Logger.log("" + (interval <= 0.0));
 
         if (user != null) {
             //Add the transaction
             try {
-                TransactionService.addTransaction(user, pence, name,description, type, dateToDatebase);
+                if(interval <= 0.0) {
+                    TransactionService.addTransaction(user, pence, name, description, type, dateToDatebase, 0);
+                } else {
+                    int interval_in_sec = (int)(interval*3600);
+                    Date formatEndDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(endDate);
+                    long datems2 = formatEndDate.getTime();
+                    String EnddateToDatebase = Long.toString(datems2/1000);
+                    TransactionService.addRecurringTransaction(user, pence, name, description, type, dateToDatebase, interval_in_sec, EnddateToDatebase);
+
+                }
             } catch(Exception e){
                 e.printStackTrace();
             }
@@ -75,11 +87,11 @@ public class TransactionController {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public String AddIncome(@CookieParam("sessionToken") Cookie sessionCookie,
-                                 @FormParam("incomeName") String name,
-                                 @FormParam("incomeDate") String date,
-                                 @FormParam("incomeAmount") float amount,
-                                 @FormParam("incomeType") String type,
-                                 @FormParam("incomeDescription") String description) throws ParseException {
+                            @FormParam("incomeName") String name,
+                            @FormParam("incomeDate") String date,
+                            @FormParam("incomeAmount") float amount,
+                            @FormParam("incomeType") String type,
+                            @FormParam("incomeDescription") String description) throws ParseException {
 
         User user = UserService.ValidateSessionToken(sessionCookie);
         //Date format

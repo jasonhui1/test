@@ -9,6 +9,7 @@
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/datatables.min.css" rel="stylesheet" >
     <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet" >
+
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
@@ -51,7 +52,7 @@
                                             <a class="nav-item nav-link active" id="nav-spending-tab" data-toggle="tab" href="#nav-spending" role="tab" aria-controls="nav-spending" aria-selected="true">Spending</a>
                                             <a class="nav-item nav-link" id="nav-income-tab" data-toggle="tab" href="#nav-income" role="tab" aria-controls="nav-income" aria-selected="false">Income</a>
                                             <button class="btn btn-primary float-right ml-auto mb-2" data-toggle="modal" data-target="#spendingModal" onclick="calculateCurrentTime()">Add Spending</button>
-                                            <button class="btn btn-primary float-right ml-3 mb-2"data-toggle="modal" data-target="#incomeModal">Add income</button>
+                                            <button class="btn btn-primary float-right ml-3 mb-2" data-toggle="modal" data-target="#incomeModal">Add income</button>
                                         </div>
                                     </nav>
                                 </div>
@@ -118,37 +119,38 @@
 
                                     <div class="form-group mb-3">
 
-                                        <label> Amount</label>
-                                        <div class="input-group">
+                                        <label class="custom-control pl-0"> Amount
+                                            <span class="input-group mt-2">
 
-                                            <div class="input-group-prepend" >
+                                            <span class="input-group-prepend" >
                                                 <span class="input-group-text" style="color:black; width:40px">£</span>
-                                            </div>
+                                            </span>
                                             <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required>
-                                        </div>
-
-
-                                    </div>
-
-
-                                    <div class="form-group mb-3">
-                                        <label> Name</label>
-                                        <input type="text" class="form-control" placeholder="Transaction name" name="name" required>
+                                        </span>
+                                        </label>
 
                                     </div>
 
                                     <div class="form-group mb-3">
-
-                                        <label> Description (optional) </label>
-                                        <input type="text" class="form-control" placeholder="Transaction description" name="description" >
+                                        <label class="custom-control pl-0"> Name
+                                            <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required>
+                                        </label>
 
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label> Select a category</label>
-                                        <div class="input-spending">
 
-                                            <div class="input-group">
+                                        <label class="custom-control pl-0"> Description (optional)
+                                            <input type="text" class="form-control mt-2" placeholder="Transaction description" name="description" >
+                                        </label>
+
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label class="custom-control pl-0"> Select a category
+                                            <span class="input-spending mt-2">
+
+                                            <span class="input-group">
 
                                                 <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)">
                                                     <option value="" selected disabled hidden>Select a category</option>
@@ -160,22 +162,54 @@
                                                     <option value="Other">Other </option>
                                                 </select>
 
-                                                <div class="input-group-append" >
+                                                <span class="input-group-append" >
                                                     <span class="input-group-text" style="color:black; width:40px">
                                                         <i style="width: 16px" class="optionsIcon fas" hidden></i>
                                                     </span>
-                                                </div>
+                                                </span>
 
 
-                                            </div>
+                                            </span>
 
-                                        </div>
+                                        </span>
+                                        </label>
 
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label> Date</label>
-                                        <input type="datetime-local" class="form-control spending-date" name="date"  required>
+                                        <label class="custom-control pl-0"> Date
+                                            <input type="datetime-local" class="form-control spending-date mt-2" name="date"  required>
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <div class="form-check">
+                                            <label class="container ml-0">
+                                                <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment?
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="recurring_form" hidden>
+                                        <div class="form-group mb-3 row">
+                                            <label class="custom-control pr-3 py-3" style="display:block"> Every</label>
+                                            <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)">
+
+                                            <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type" onchange="setTimeInterval(this)">
+                                                <option value="hour" selected>Hour</option>
+                                                <option value="day">Day</option>
+                                                <option value="month">Month</option>
+                                                <option value="year">Year</option>
+                                            </select>
+                                        </div>
+
+                                        <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden>
+
+                                        <div class="form-group mb-3">
+                                            <label class="custom-control pl-0"> Recurring payment end date
+                                                <input type="datetime-local" class="form-control recurring_end_date" name="end_date">
+                                            </label>
+                                        </div>
                                     </div>
 
                                     <div class="form-group mb-5">
@@ -183,13 +217,13 @@
                                         <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button>
                                     </div>
 
+
                                     <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button>
 
                                 </form>
                             </div>
 
                         </div>
-                        <!--                        my-3 mx-auto-->
                     </div>
                 </div>
                 <div class="modal-footer">

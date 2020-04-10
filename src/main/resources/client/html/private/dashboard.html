@@ -191,23 +191,25 @@
                                     </div>
 
                                     <div class="recurring_form" hidden>
-                                        <div class="form-group mb-3 row">
-                                            <label class="custom-control pr-3 py-3" style="display:block"> Every</label>
+                                        <label class="custom-control pl-0"> Payment Interval
+                                        <span class="form-group mb-3 row ml-0">
+
                                             <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)">
 
-                                            <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type" onchange="setTimeInterval(this)">
+                                            <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type ml-2" onchange="setTimeInterval(this)">
                                                 <option value="hour" selected>Hour</option>
                                                 <option value="day">Day</option>
                                                 <option value="month">Month</option>
                                                 <option value="year">Year</option>
                                             </select>
-                                        </div>
+                                        </span>
+                                        </label>
 
                                         <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden>
 
                                         <div class="form-group mb-3">
                                             <label class="custom-control pl-0"> Recurring payment end date
-                                                <input type="datetime-local" class="form-control recurring_end_date" name="end_date">
+                                                <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date">
                                             </label>
                                         </div>
                                     </div>

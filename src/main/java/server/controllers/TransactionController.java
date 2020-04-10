@@ -135,6 +135,9 @@ public class TransactionController {
         User user = UserService.ValidateSessionToken(sessionCookie);
         if(user != null) {
             ArrayList<Transaction> transactions = new ArrayList<>();
+
+            //Add any recurring payments
+            TransactionService.updateRecurringPayment(user.getId());
             //Read shifts into arrayList
             String status = TransactionService.getRelevantTransactions(transactions, user.getId());
             if (status.equals("OK")) {

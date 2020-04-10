@@ -5,6 +5,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import server.Logger;
 import server.models.Income;
+import server.models.RecurringTransaction;
 import server.models.Transaction;
 import server.models.User;
 import server.models.services.TransactionService;
@@ -45,23 +46,25 @@ public class TransactionController {
         Logger.log("new transaction");
         //Date format
         Date formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(date);
-        long datems = formatDate.getTime();
+        int date_insec =(int)(formatDate.getTime()/1000);
         //Put date in string in millisecond
-        String dateToDatebase = Long.toString(datems/1000);
         int pence = (int)(amount*100);
-        Logger.log("" + (interval <= 0.0));
 
         if (user != null) {
             //Add the transaction
             try {
                 if(interval <= 0.0) {
-                    TransactionService.addTransaction(user, pence, name, description, type, dateToDatebase, 0);
+//                    TransactionService.addTransaction(user, pence, name, description, type, dateToDatebase, 0);
+                    TransactionService.addTransaction(new Transaction(name, description, TransactionService.getTransactionId(type), 0, user.getId(), pence, date_insec));
+
                 } else {
+
+//                    TransactionService.addRecurringTransaction(user, pence, name, description, type, dateToDatebase, interval_in_sec, EnddateToDatebase);
+                    int spending_ID = TransactionService.addTransactionReturnId(new Transaction(name, description, TransactionService.getTransactionId(type), 0, user.getId(), pence, date_insec));
                     int interval_in_sec = (int)(interval*3600);
                     Date formatEndDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(endDate);
-                    long datems2 = formatEndDate.getTime();
-                    String EnddateToDatebase = Long.toString(datems2/1000);
-                    TransactionService.addRecurringTransaction(user, pence, name, description, type, dateToDatebase, interval_in_sec, EnddateToDatebase);
+                    int endDate_insec = (int)(formatEndDate.getTime()/1000);
+                    TransactionService.addRecurringTransaction(new RecurringTransaction(spending_ID, date_insec, endDate_insec, interval_in_sec, date_insec));
 
                 }
             } catch(Exception e){

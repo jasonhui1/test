@@ -363,39 +363,31 @@ public class TransactionService {
                         //If this is a recurring payment
                         if(spending_results.getInt("recurring") == 1){
 
-                            int spending_ID = spending_results.getInt("id");
-
+                            Transaction transaction = new Transaction(spending_results.getString("name"), spending_results.getString("description"), spending_results.getInt("spending_id"), spending_results.getInt("recurring"), userID, spending_results.getInt("amount"), spending_results.getInt("date"));
+                            int spending_id = spending_results.getInt("id");
                             //New statement for the recurring payment table
-                            statement= DatabaseConnection.newStatement("SELECT id, last_updated_date, end_date, interval FROM Recurring_Spending WHERE spending_id = ?");
-                            //We only want this recurring spending
-                            statement.setInt(1, spending_ID);
+                            statement= DatabaseConnection.newStatement("SELECT id, start_date, last_updated_date, end_date, interval FROM Recurring_Spending WHERE spending_id = ?");
+                            //We only want the recurring spending record with this spending_id, which is a recurring payment
+                            statement.setInt(1, spending_id);
                             ResultSet recurSpending_results = statement.executeQuery();
 
-
                             if (recurSpending_results != null) {
-                                //copy data from the spending table
-                                String name = spending_results.getString("name");
-                                int type_ID = spending_results.getInt("spending_id");
-                                String description = spending_results.getString("description");
-                                int amount = spending_results.getInt("amount");
-                                int recurring = spending_results.getInt("recurring");
 
                                 while (recurSpending_results.next()) {
                                     //copy data from the recurring spending table
-                                    int interval = recurSpending_results.getInt("interval"); //interval in seconds
-                                    int last_updated_date = recurSpending_results.getInt("last_updated_date");
-                                    int end_date = recurSpending_results.getInt("end_date");
+                                    RecurringTransaction recurringTransaction = new RecurringTransaction(spending_id, recurSpending_results.getInt("start_date"), recurSpending_results.getInt("end_date"), recurSpending_results.getInt("interval"), recurSpending_results.getInt("last_updated_date"));
                                     Date today = new Date();
                                     int today_date = (int)(today.getTime() / 1000); //todays date in second, same as other date above
-                                    int current_calculating_date = last_updated_date;
+                                    int current_calculating_date = recurringTransaction.getLastUpdatedDate();
+                                    int interval = recurringTransaction.getInterval();
 
-                                    //Add payment if the interval is over
-                                    while (end_date >= (current_calculating_date + interval)) {
+                                    //If the recurring payment is not ended yet, check if new payments need to be added
+                                    while (recurringTransaction.getEndDate() >= (current_calculating_date + interval)) {
 
                                         //Keep adding before today
                                         if ((current_calculating_date + interval) < today_date) {
                                             current_calculating_date += interval;
-                                            addTransaction(new Transaction(name, description, type_ID, recurring, userID, amount, current_calculating_date));
+                                            addTransaction(new Transaction(transaction.getName(), transaction.getDescription(), transaction.getTypeId(), transaction.getRecurring(), transaction.getUserId(), transaction.getAmount(), current_calculating_date));
 
                                         } else {
                                             break;
@@ -406,14 +398,12 @@ public class TransactionService {
                                     int recurSpending_id = recurSpending_results.getInt("id");
                                     //Update last updated date
                                     statement = DatabaseConnection.newStatement("UPDATE Recurring_Spending set last_updated_date = ? where id = ?");
-                                    statement.setString(1, Long.toString(current_calculating_date));
+                                    statement.setInt(1, current_calculating_date);
                                     statement.setInt(2, recurSpending_id);
                                     statement.executeUpdate();
                                 }
                             }
-
                         }
-
                     }
                 }
             }

@@ -1,9 +1,6 @@
 package server;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 /**
@@ -49,6 +46,10 @@ public class DatabaseConnection {
      */
     public static PreparedStatement newStatement(String query) throws SQLException {
         return connection.prepareStatement(query);
+    }
+
+    public static PreparedStatement newStatementAndgetID(String query) throws SQLException {
+        return connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
     }
 
 

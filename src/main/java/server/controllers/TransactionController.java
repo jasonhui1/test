@@ -5,6 +5,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import server.Logger;
 import server.models.Income;
+import server.models.RecurringTransaction;
 import server.models.Transaction;
 import server.models.User;
 import server.models.services.TransactionService;
@@ -37,21 +38,35 @@ public class TransactionController {
                                  @FormParam("name") String name,
                                  @FormParam("description") String description,
                                  @FormParam("type") String type,
-                                 @FormParam("date") String date) throws ParseException {
+                                 @FormParam("date") String date,
+                                 @FormParam("recurring_interval") float interval,
+                                 @FormParam("end_date") String endDate) throws ParseException {
 
         User user = UserService.ValidateSessionToken(sessionCookie);
         Logger.log("new transaction");
         //Date format
-        Date formatDate = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm").parse(date);
-        long datems = formatDate.getTime();
+        Date formatDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(date);
+        int date_insec =(int)(formatDate.getTime()/1000);
         //Put date in string in millisecond
-        String dateToDatebase = Long.toString(datems/1000);
         int pence = (int)(amount*100);
 
         if (user != null) {
             //Add the transaction
             try {
-                TransactionService.addTransaction(user, pence, name,description, type, dateToDatebase);
+                if(interval <= 0.0) {
+//                    TransactionService.addTransaction(user, pence, name, description, type, dateToDatebase, 0);
+                    TransactionService.addTransaction(new Transaction(name, description, TransactionService.getTransactionId(type), 0, user.getId(), pence, date_insec));
+
+                } else {
+
+//                    TransactionService.addRecurringTransaction(user, pence, name, description, type, dateToDatebase, interval_in_sec, EnddateToDatebase);
+                    int spending_ID = TransactionService.addTransactionReturnId(new Transaction(name, description, TransactionService.getTransactionId(type), 1, user.getId(), pence, date_insec));
+                    int interval_in_sec = (int)(interval*3600);
+                    Date formatEndDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(endDate);
+                    int endDate_insec = (int)(formatEndDate.getTime()/1000);
+                    TransactionService.addRecurringTransaction(new RecurringTransaction(spending_ID, date_insec, endDate_insec, interval_in_sec, date_insec));
+
+                }
             } catch(Exception e){
                 e.printStackTrace();
             }
@@ -75,11 +90,11 @@ public class TransactionController {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public String AddIncome(@CookieParam("sessionToken") Cookie sessionCookie,
-                                 @FormParam("incomeName") String name,
-                                 @FormParam("incomeDate") String date,
-                                 @FormParam("incomeAmount") float amount,
-                                 @FormParam("incomeType") String type,
-                                 @FormParam("incomeDescription") String description) throws ParseException {
+                            @FormParam("incomeName") String name,
+                            @FormParam("incomeDate") String date,
+                            @FormParam("incomeAmount") float amount,
+                            @FormParam("incomeType") String type,
+                            @FormParam("incomeDescription") String description) throws ParseException {
 
         User user = UserService.ValidateSessionToken(sessionCookie);
         //Date format
@@ -123,6 +138,9 @@ public class TransactionController {
         User user = UserService.ValidateSessionToken(sessionCookie);
         if(user != null) {
             ArrayList<Transaction> transactions = new ArrayList<>();
+
+            //Add any recurring payments
+            TransactionService.updateRecurringPayment(user.getId());
             //Read shifts into arrayList
             String status = TransactionService.getRelevantTransactions(transactions, user.getId());
             if (status.equals("OK")) {

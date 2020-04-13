@@ -231,5 +231,35 @@ public class TransactionService {
     }
 
 
+    /**
+     * Function to get total amount spent on certain category by user
+     * @Author Matthew
+     * @param userID pass in the ID of the user
+     * @param category string of the category to get value of
+     * @return TOTAL amount spent on that category
+     */
+    public static int getSpending(int userID, String category) {
+        int totalAmount = 0;
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement("SELECT amount FROM SPENDING WHERE user_id = ? AND spending_id = ?");
+            if (statement != null){
+                statement.setInt(1, userID);
+                statement.setInt(2, getTransactionId(category));
+                ResultSet results = statement.executeQuery();
+                if (results != null){
+                  while (results.next()) {
+                      totalAmount = totalAmount + results.getInt("amount");
+                  }
+                }
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return totalAmount;
+    }
+
+
 
 }

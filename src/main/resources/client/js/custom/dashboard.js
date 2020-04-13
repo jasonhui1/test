@@ -62,8 +62,7 @@ function timeConverter(timestamp){
     let hour = a.getHours();
     //If minutes are below 10, display as 01 rather than 1
     let min = (a.getMinutes() < 10 ? "0" : "") + a.getMinutes();
-    let time = hour + ":" + min;
-    return time;
+    return hour + ":" + min;
 }
 
 //Author Alfred
@@ -245,7 +244,7 @@ function submitIncome(){
 
 //Author Ceri
 //sends data to the database
-function addIncome(event, filledForm){
+function addIncome(event, filledForm) {
 
     form = $(filledForm);
     divForm = $(".income_columns").has(filledForm)
@@ -263,9 +262,70 @@ function addIncome(event, filledForm){
     });
 
 
-
-
 }
+
+
+/**
+ * The below is to do with the loading on the graph and getting details from Java to display
+ * @author Matthew Johnson
+ */
+function loadGraph() {
+    let categoryList = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; //sets all items in array to  in case nothing is returned
+    $.ajax({
+        url: "/transaction/get/category-value", //sends off for details
+        type: "GET",
+
+        success: returnedList => {
+            categoryList = returnedList;
+            let count = 0;
+            for (let listItem of returnedList) {
+                categoryList[count] = parseFloat(listItem) / 100 //goes from pence to pounds and convert to float
+                count++;
+            }
+
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Entertainment', 'Shopping', 'Groceries', 'Food', 'Travel', 'Other'],
+                    datasets: [{
+                        label: 'Money Spent £',
+                        /*The actual data to be displayed:*/
+                        data: [categoryList[0], categoryList[1], categoryList[2], categoryList[3], categoryList[4], categoryList[5]],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    });
+}
+
 
 
 

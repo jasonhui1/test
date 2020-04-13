@@ -10,7 +10,7 @@
     <link href="css/datatables.min.css" rel="stylesheet" >
     <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet" >
 </head>
-<body>
+<body onload="loadGraph()">
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
     <ul class="navbar-nav px-3">
@@ -51,7 +51,7 @@
                                             <a class="nav-item nav-link active" id="nav-spending-tab" data-toggle="tab" href="#nav-spending" role="tab" aria-controls="nav-spending" aria-selected="true">Spending</a>
                                             <a class="nav-item nav-link" id="nav-income-tab" data-toggle="tab" href="#nav-income" role="tab" aria-controls="nav-income" aria-selected="false">Income</a>
                                             <button class="btn btn-primary float-right ml-auto mb-2" data-toggle="modal" data-target="#spendingModal" onclick="calculateCurrentTime()">Add Spending</button>
-                                            <button class="btn btn-primary float-right ml-3 mb-2"data-toggle="modal" data-target="#incomeModal">Add income</button>
+                                            <button class="btn btn-primary float-right ml-3 mb-2" data-toggle="modal" data-target="#incomeModal">Add income</button>
                                         </div>
                                     </nav>
                                 </div>
@@ -269,43 +269,5 @@
 <script src="js/dataTables.bootstrap4.min.js"></script>
 <script src="js/logout.js"></script>
 <script src="js/dashboard.js"></script>
-<script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-</script>
+
 </html>

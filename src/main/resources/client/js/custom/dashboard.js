@@ -265,8 +265,6 @@ function ShowRecurringForm(cb){
 function change_end_date_min(input){
     Block = $("form").has(input)
     Block.find(".recurring_end_date").attr({"min": input.val()})
-    console.log(Block)
-    console.log(input.val())
 
 }
 

@@ -60,7 +60,7 @@ public class TransactionController {
                 } else {
 
 //                    TransactionService.addRecurringTransaction(user, pence, name, description, type, dateToDatebase, interval_in_sec, EnddateToDatebase);
-                    int spending_ID = TransactionService.addTransactionReturnId(new Transaction(name, description, TransactionService.getTransactionId(type), 0, user.getId(), pence, date_insec));
+                    int spending_ID = TransactionService.addTransactionReturnId(new Transaction(name, description, TransactionService.getTransactionId(type), 1, user.getId(), pence, date_insec));
                     int interval_in_sec = (int)(interval*3600);
                     Date formatEndDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm").parse(endDate);
                     int endDate_insec = (int)(formatEndDate.getTime()/1000);

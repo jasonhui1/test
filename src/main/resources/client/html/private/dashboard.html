@@ -178,7 +178,7 @@
 
                                     <div class="form-group mb-3">
                                         <label class="custom-control pl-0"> Date
-                                            <input type="datetime-local" class="form-control spending-date mt-2" name="date"  required>
+                                            <input type="datetime-local" class="form-control spending-date mt-2" name="date" max="2035-12-31T23:59" required onblur="change_end_date_min(this)">
                                         </label>
                                     </div>
 
@@ -209,7 +209,7 @@
 
                                         <div class="form-group mb-3">
                                             <label class="custom-control pl-0"> Recurring payment end date
-                                                <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date">
+                                                <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date" max="2035-12-31T23:59">
                                             </label>
                                         </div>
                                     </div>
@@ -296,15 +296,19 @@
     </div>
 
 </div>
+
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.js"></script>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
 <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script src="js/Chart.min.js"></script>
 <script src="js/datatables.min.js"></script>
 <script src="js/dataTables.bootstrap4.min.js"></script>
 <script src="js/logout.js"></script>
 <script src="js/dashboard.js"></script>
+
 <script>
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {

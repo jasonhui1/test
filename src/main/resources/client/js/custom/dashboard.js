@@ -110,7 +110,8 @@ function addInputColumn(clickedButton){
     //Select the form that has this button
     divForm = $(".spending_columns").has(clickedButton);
     //Content of a new column
-    $(divForm).after('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label class="custom-control pl-0"> Amount <span class="input-group mt-2"> <span class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </span> <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Name <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Description (optional) <input type="text" class="form-control mt-2" placeholder="Transaction description" name="description" > </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Select a category <span class="input-spending mt-2"> <span class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <span class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </span> </span> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Date <input type="datetime-local" class="form-control spending-date mt-2" name="date"  required> </label> </div> <div class="form-group mb-3"> <div class="form-check"> <label class="container ml-0"> <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment? </label> </div> </div> <div class="recurring_form" hidden> <label class="custom-control pl-0"> Payment Interval <span class="form-group mb-3 row ml-0"> <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)"> <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type ml-2" onchange="setTimeInterval(this)"> <option value="hour" selected>Hour</option> <option value="day">Day</option> <option value="month">Month</option> <option value="year">Year</option> </select> </span> </label> <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden> <div class="form-group mb-3"> <label class="custom-control pl-0"> Recurring payment end date <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date"> </label> </div> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
+    $(divForm).after('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label class="custom-control pl-0"> Amount <span class="input-group mt-2"> <span class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </span> <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Name <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Description (optional) <input type="text" class="form-control mt-2" placeholder="Transaction description" name="description" > </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Select a category <span class="input-spending mt-2"> <span class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <span class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </span> </span> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Date <input type="datetime-local" class="form-control spending-date mt-2" name="date" max="2035-12-31T23:59" required onblur="change_end_date_min(this)"> </label> </div> <div class="form-group mb-3"> <div class="form-check"> <label class="container ml-0"> <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment? </label> </div> </div> <div class="recurring_form" hidden> <label class="custom-control pl-0"> Payment Interval <span class="form-group mb-3 row ml-0"> <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)"> <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type ml-2" onchange="setTimeInterval(this)"> <option value="hour" selected>Hour</option> <option value="day">Day</option> <option value="month">Month</option> <option value="year">Year</option> </select> </span> </label> <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden> <div class="form-group mb-3"> <label class="custom-control pl-0"> Recurring payment end date <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date" max="2035-12-31T23:59"> </label> </div> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
+
 
     //Set the date to the current time
     setFormDate(divForm.next());
@@ -123,11 +124,12 @@ function addInputColumnFirst(){
 
     //Select the wrapper class of the columns
     divContainer = $("#flex-container-spending");
-    $(divContainer).append('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label class="custom-control pl-0"> Amount <span class="input-group mt-2"> <span class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </span> <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Name <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Description (optional) <input type="text" class="form-control mt-2" placeholder="Transaction description" name="description" > </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Select a category <span class="input-spending mt-2"> <span class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <span class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </span> </span> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Date <input type="datetime-local" class="form-control spending-date mt-2" name="date"  required> </label> </div> <div class="form-group mb-3"> <div class="form-check"> <label class="container ml-0"> <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment? </label> </div> </div> <div class="recurring_form" hidden> <label class="custom-control pl-0"> Payment Interval <span class="form-group mb-3 row ml-0"> <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)"> <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type ml-2" onchange="setTimeInterval(this)"> <option value="hour" selected>Hour</option> <option value="day">Day</option> <option value="month">Month</option> <option value="year">Year</option> </select> </span> </label> <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden> <div class="form-group mb-3"> <label class="custom-control pl-0"> Recurring payment end date <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date"> </label> </div> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
+    $(divContainer).append('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label class="custom-control pl-0"> Amount <span class="input-group mt-2"> <span class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </span> <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Name <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Description (optional) <input type="text" class="form-control mt-2" placeholder="Transaction description" name="description" > </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Select a category <span class="input-spending mt-2"> <span class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <span class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </span> </span> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Date <input type="datetime-local" class="form-control spending-date mt-2" name="date" max="2035-12-31T23:59" required onblur="change_end_date_min(this)"> </label> </div> <div class="form-group mb-3"> <div class="form-check"> <label class="container ml-0"> <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment? </label> </div> </div> <div class="recurring_form" hidden> <label class="custom-control pl-0"> Payment Interval <span class="form-group mb-3 row ml-0"> <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)"> <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type ml-2" onchange="setTimeInterval(this)"> <option value="hour" selected>Hour</option> <option value="day">Day</option> <option value="month">Month</option> <option value="year">Year</option> </select> </span> </label> <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden> <div class="form-group mb-3"> <label class="custom-control pl-0"> Recurring payment end date <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date" max="2035-12-31T23:59"> </label> </div> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
     //Select the div form just created
     divForm = $(".spendingForm").eq(0);
     //Set the date to the current time
     setFormDate(divForm);
+    change_end_date_min(form)
 
 }
 
@@ -173,17 +175,12 @@ function addSpending(event, filledForm){
         type: "POST",   //Type of request
         data: form.serialize(),    //extract data from form
         success: response => {  //If a response is received from server
-            //Remove the form after submitted
-//            divForm.remove()
-//            checkEmptyColumn();
-//            //Show submitted successful to user
-//            $('#informDetails').removeAttr('hidden');
-//            console.log(response)
+
 
         }
 
     });
-
+    //Remove the form after submitted
     divForm.remove()
     checkEmptyColumn();
     //Show submitted successful to user
@@ -219,10 +216,14 @@ function calculateCurrentTime(){
 
 //Author Jason
 //Set the date input to the current time when the modal is shown
+//Add validation to end date (must be after start date
 function setDate(){
-    field = $(".spending-date")
-    for (i = 0; i < field.length; i++){
-        field.eq(i).val(today);
+    spending_date = $("form").find(".spending-date");
+    end_date = $("form").find(".recurring_end_date")
+    for (i = 0; i < spending_date.length; i++){
+        spending_date.eq(i).val(today);
+        change_end_date_min(spending_date.eq(i));
+
     }
 }
 
@@ -230,8 +231,10 @@ function setDate(){
 //Set the date to the current time to the new form created
 function setFormDate(form){
     //Select the date field in the form just created
-    field = $(form).find(".spending-date");
-    field.val(today);
+    spending_date = $(form).find(".spending-date");
+    spending_date.val(today);
+    change_end_date_min(spending_date)
+
 }
 
 //Author Jason
@@ -256,6 +259,14 @@ function ShowRecurringForm(cb){
         field2.removeAttr("required")
         field3.removeAttr("required")
     }
+
+}
+
+function change_end_date_min(input){
+    Block = $("form").has(input)
+    Block.find(".recurring_end_date").attr({"min": input.val()})
+    console.log(Block)
+    console.log(input.val())
 
 }
 

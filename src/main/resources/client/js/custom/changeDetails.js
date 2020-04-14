@@ -2,26 +2,29 @@
 //Adapted for use to change details by: Matthew Johnson
 function changeDetailsRequest(){
     const changeDetailsForm = $("#changeDetailsForm"); //form for which details to be changed are entered
-    changeDetailsForm.submit(event => {
-        event.preventDefault(); //Stop the default handling of the form submit
         if (checkPassword()) {
+
             $.ajax({
-                url: "/user/amend",   //url location of request handler
-                type: "POST",   //Type of request
+                url: '/user/amend',   //url location of request handler
+                type: 'POST',   //Type of request
                 data: changeDetailsForm.serialize(),    //extract data from form
-                success: response => {  //If a response is received from server
-                    if (response.startsWith("Error:")) {
-                        alert(response);    //Display the error message
-                    } else if (response.startsWith("BadDetails:")) {
-                        //TODO Highlight fields with bad data rather than just displaying a message
-                        alert(response);
-                        window.location.href = "/dashboard";
+
+                success: response => {
+                    if (response.startsWith("Error")){
+                        alert("Details could not be changed! Please try again.");
                     }
 
+                    if (response.startsWith("Email")){
+                        alert("Email already in use - Details weren't changed!");
+                    }
+
+                    if (response.startsWith("Success")){
+                        alert("Details have been updated!");
+                    }
                 }
             });
+
         }
-    });
 }
 
 function deleteFunction() {
@@ -48,7 +51,7 @@ function checkPassword() {
     const inputPass2 = $("#newPasswordInput2");
 
     if(inputPass1.val() !== inputPass2.val()){
-        alert("The two passwords aren't matching");
+        alert("The two passwords aren't matching - Please re-enter and try again");
         return false;
     }
     return true;

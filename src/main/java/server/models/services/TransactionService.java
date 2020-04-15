@@ -45,7 +45,29 @@ public class TransactionService {
 
     }
 
+    /**
+     * @author Ceri
+     * form parameters
+     */
+    public static void deleteSpending(User user, String name){
 
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement("DELETE from Spending WHERE user_id = ? AND name = ?");
+            Logger.log("trying to edit database");
+
+            if(statement != null){
+                //Add data to query
+                statement.setInt(1, user.getId());
+                statement.setString(2, name);
+                statement.executeUpdate();
+                Logger.log("transaction removed from database");
+            }
+        } catch (Exception e){
+            Logger.log("Failed");
+            e.printStackTrace();
+        }
+
+    }
     /**
      * @author Jason
      * Add transaction the database
@@ -308,6 +330,7 @@ public class TransactionService {
         return "OK";
     }
 
+
     /**
      * @author Alfred
      * @param incomeList the list to populate
@@ -414,5 +437,4 @@ public class TransactionService {
         }
 
     }
-
 }

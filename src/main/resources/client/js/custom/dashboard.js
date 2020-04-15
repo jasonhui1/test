@@ -81,7 +81,7 @@ function dateConverter(timestamp){
 
 //Author Alfred
 //Creates the table entry to display our data
-function renderSpending(spending){
+function renderSpending(spending){;
     return  `<tr>` +
         `<td>${spending.name}</td>` +
         `<td>${spending.description}</td>` +
@@ -319,5 +319,30 @@ function addIncome(event, filledForm){
 
 }
 
+function submitDelete(){
 
+    loginForm = $(".incomeForm"); //Select all forms
+    buttons = $(".btn-delete-submit"); //Select the hidden submit button in all forms
+    event.preventDefault();
+    for(i= 0; i  < loginForm.length; i++){
+        currentForm = loginForm.eq(i);
+        button = buttons.eq(i);
+        button.click();
 
+    }
+
+}
+function deleteSpending(event, filledForm) {
+    form = $(filledForm);
+    divForm = $(".delete_columns").has(filledForm)
+    event.preventDefault();
+    $.ajax({
+        url: "/transaction/delete/spending",   //url location of request handler
+        type: "POST",   //Type of request
+        data: form.serialize(),    //extract data from form
+        success: response => {  //If a response is received from server
+            //Remove the form after submitted
+            divForm.remove();
+        }
+    });
+}

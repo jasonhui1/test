@@ -121,9 +121,34 @@ public class TransactionController {
 
         return  "type: " + type +  " date: " + date;
     }
+    /**
+     * @author Ceri Griffiths
+     *
+     * This is a template for how we can send our data to remove a transaction from the database
+     */
+    @POST
+    @Path("delete/spending")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String deleteSpending(@CookieParam("sessionToken") Cookie sessionCookie, String name){
+        User user = UserService.ValidateSessionToken(sessionCookie);
+        if (user != null) {
+            //Add the transaction
+            try {
+                TransactionService.deleteSpending(user, name);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+            Logger.log("A user has removed a transaction");
 
+        } else {
+            //The user isn't logged in and shouldn't be able to make database changes
+            Logger.log("An unauthorised attempted at adding an income was occurred");
+            return "error";
+        }
 
-
+        return name + " deleted";
+    }
     /**
      * @author Alfred Jones
      * @param sessionCookie The cookie of the user
@@ -158,7 +183,6 @@ public class TransactionController {
             return response.toString();
         }
     }
-
     /**
      * @author Alfred Jones
      * @param sessionCookie The cookie of the user
@@ -222,6 +246,5 @@ public class TransactionController {
         }
         return messageList.toString();
     }
-
 
 }

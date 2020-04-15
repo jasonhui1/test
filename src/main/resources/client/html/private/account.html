@@ -7,7 +7,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/dashboardLayout.css" rel="stylesheet">
 </head>
-<body onload="changeDetailsRequest()">
+<body>
 
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
@@ -35,8 +35,9 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <div class = "text-center  pt-5 d-flex h-100">
                 <div class = " w-50 container pt-5">
-                    <form id="  changeDetailsForm center pt-5" >
+                    <form id="changeDetailsForm" >
                         <h2 class = "pb-2">Enter Details you Would Like to Change</h2>
+                        <p>Only enter details for the items you want to change. Leave other textboxes blank</p>
                         <div class="form-group pt-4">
                             <label for="emailInput">Email address</label>
                             <input type="email" class="form-control" id="emailInput" placeholder="Email address" name="email">
@@ -57,7 +58,7 @@
                             <label for="newPasswordInput2">Please enter new password again</label>
                             <input type="password" class="form-control" id="newPasswordInput2" placeholder="Confirm New Password">
                         </div>
-                        <button type="submit" onload="" class="btn btn-primary">Change Details</button>
+                        <button type="submit" onclick="changeDetailsRequest()" class="btn btn-primary">Change Details</button>
                         <a onclick="deleteFunction()" class="btn btn-danger">Delete</a>
                     </form>
 

@@ -319,5 +319,21 @@ function addIncome(event, filledForm){
 
 }
 
+function addBudget(event, filledForm){
+    form = $(filledForm);
+    event.preventDefault();
+    $.ajax({
+        url: "budget/add",   //url location of request handler
+        type: "POST",   //Type of request
+        data: form.serialize(),    //extract data from form
+        success: response => {  //If a response is received from server
+            console.log("ASDA")
+        }
+
+    });
+    //Remove the form after submitted
+
+}
+
 
 

@@ -41,6 +41,7 @@
                         <canvas id="myChart" ></canvas>
                     </div>
                 </div>
+                <button class="btn btn-primary ml-3 mb-2" data-toggle="modal" data-target="#budgetModal">Add budget for this month</button>
                 <div class="row py-5">
                     <div class="col-md-12 h-100">
                         <div class="card h-100">
@@ -51,6 +52,7 @@
                                         <div class="nav nav-tabs w-100" id="nav-tab" role="tablist">
                                             <a class="nav-item nav-link active" id="nav-spending-tab" data-toggle="tab" href="#nav-spending" role="tab" aria-controls="nav-spending" aria-selected="true">Spending</a>
                                             <a class="nav-item nav-link" id="nav-income-tab" data-toggle="tab" href="#nav-income" role="tab" aria-controls="nav-income" aria-selected="false">Income</a>
+
                                             <button class="btn btn-primary float-right ml-auto mb-2" data-toggle="modal" data-target="#spendingModal" onclick="calculateCurrentTime()">Add Spending</button>
                                             <button class="btn btn-primary float-right ml-3 mb-2" data-toggle="modal" data-target="#incomeModal">Add income</button>
                                         </div>
@@ -98,6 +100,46 @@
                 </div>
             </div>
         </main>
+    </div>
+    <div class="modal fade" id="budgetModal" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content center" >
+                <div class="modal-header">
+                    <h5 class="modal-title">Budget for this month</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="pb-2 font-weight-light text-success text-center" hidden>Valid Form submitted</h4>
+                    <div class="container-fluid">
+
+                        <form class="budgetForm" onsubmit="addBudget(event,this)">
+
+                            <div class="form-group mb-3">
+
+                                <label class="custom-control pl-0"> Budget amount
+                                    <span class="input-group mt-2">
+
+                                        <span class="input-group-prepend" >
+                                            <span class="input-group-text" style="color:black; width:40px">£</span>
+                                        </span>
+                                        <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Budget amount" required>
+                                    </span>
+                                </label>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal fade" id="spendingModal" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
         <div class="modal-dialog" role="document" style="width:100%;max-width:1250px">

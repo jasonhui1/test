@@ -154,6 +154,8 @@ public class UserController {
             assert user != null;
             Logger.log("About to delete user " + user.getId());
             UserService.deleteUser(user);
+            UserService.signOut(user);
+
         }catch (SQLException e){
             e.printStackTrace();
         }

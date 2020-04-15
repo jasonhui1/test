@@ -1,8 +1,12 @@
 //Author Alfred
 //Run on page startup
+var budget = -1
 $(document).ready(function () {
+
     getIncome();
     getSpending();
+    getBudget();
+
 });
 
 
@@ -262,20 +266,27 @@ function ShowRecurringForm(cb){
 
 }
 
+//Author Jason
+//Set end date must be later than start date
 function change_end_date_min(input){
     Block = $("form").has(input)
     Block.find(".recurring_end_date").attr({"min": input.val()})
 
 }
 
+//Author Jason
+//Convert interval to second and make sure it doesnt exceed the maximum integer bits
 function setTimeInterval(input){
 
     Block = $(".recurring_form").has(input)
-    Time = Block.find(".recurring_interval_time").val()
+    TimeBlock = Block.find(".recurring_interval_time")
+    Time = TimeBlock.val()
     Type = Block.find(".recurring_interval_type").val()
     FillBlock = Block.find(".time_interval_in_hours")
     convertType = {hour : 1, day: 24, month: 720, year: 8760}
-    FillBlock.val(Time*convertType[Type])
+    second = Time*convertType[Type]
+    FillBlock.val(second)
+    TimeBlock.attr({"max": (2147483640/convertType[Type]).toFixed(1)})
 
 }
 
@@ -319,21 +330,80 @@ function addIncome(event, filledForm){
 
 }
 
+//Author Jason
+//add/change budget to the database
 function addBudget(event, filledForm){
     form = $(filledForm);
     event.preventDefault();
+    console.log(budget)
+    //if a budget is set before, add this budget, else update it
+    if(budget < 0){
+        $.ajax({
+            url: "budget/add",   //url location of request handler
+            type: "POST",   //Type of request
+            data: form.serialize(),    //extract data from form
+            success: budgetAmount => {  //If a response is received from server
+                budget = budgetAmount
+                ('.modal').modal('hide') //Close the modal
+                updateShowBudget(budgetAmount) //update the display amount
+            }
+
+        });
+
+    } else {
+         $.ajax({
+            url: "budget/change",   //url location of request handler
+            type: "POST",   //Type of request
+            data: form.serialize(),    //extract data from form
+            success: budgetAmount => {  //If a response is received from server
+                budget = budgetAmount
+                $('.modal').modal('hide') //Close the modal
+                 updateShowBudget(budgetAmount) //update the display amount
+            }
+
+         });
+    }
+
+}
+
+//Author Jason
+//get budget from the database
+function getBudget(){
     $.ajax({
-        url: "budget/add",   //url location of request handler
+        url: "budget/get",   //url location of request handler
         type: "POST",   //Type of request
-        data: form.serialize(),    //extract data from form
-        success: response => {  //If a response is received from server
-            console.log("ASDA")
+        success: budgetAmount => {  //If a response is received from server
+            budget = budgetAmount
+            updateShowBudget(budgetAmount)
         }
 
     });
-    //Remove the form after submitted
 
 }
+
+//Author Jason
+//update the display
+function updateShowBudget(budget){
+    Button = $('.budgetButton')
+    if(budget >= 0){
+        $("#showBudget").html("£" + budget/100)
+        for(i = 0; i < Button.length; i++){
+            Button.eq(i).html("Change")
+        }
+    } else {
+        for(i = 0; i < Button.length; i++){
+            Button.eq(i).html("Add")
+        }
+    }
+}
+
+//Author Jason
+//simulate submit and validation for the budget form
+function submitBudget(){
+
+   $("#budgetFormButton").click();
+}
+
 
 
 

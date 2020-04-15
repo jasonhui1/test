@@ -318,7 +318,8 @@ function addIncome(event, filledForm){
     });
 
 }
-
+//Author Ceri
+//checks the form is correct
 function submitDelete(){
 
     loginForm = $(".incomeForm"); //Select all forms
@@ -332,6 +333,8 @@ function submitDelete(){
     }
 
 }
+//author Ceri
+//sends data to be deleted
 function deleteSpending(event, filledForm) {
     form = $(filledForm);
     divForm = $(".delete_columns").has(filledForm)

@@ -147,6 +147,7 @@ function submitSpending(){
     form = $(".spendingForm"); //Select all forms
     buttons = $(".btn-spending-submit"); //Select the hidden submit button in all forms
     event.preventDefault();
+    len = form.length;
     //Hide the submit successful info
     $('#informDetails').attr('hidden',true);
     //Loop all forms and submit them
@@ -196,7 +197,7 @@ var today;
 
 //Author Jason
 function calculateCurrentTime(){
-     today = new Date();
+    today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
@@ -217,6 +218,7 @@ function setDate(){
     }
 }
 
+//Author Jason
 //Set the date to the current time to the new form created
 function setFormDate(form){
     //Select the date field in the form just created
@@ -241,6 +243,7 @@ function submitIncome(){
     }
 
 }
+
 
 //Author Ceri
 //sends data to the database
@@ -329,3 +332,32 @@ function loadGraph() {
 
 
 
+function submitDelete(){
+
+    loginForm = $(".incomeForm"); //Select all forms
+    buttons = $(".btn-delete-submit"); //Select the hidden submit button in all forms
+    event.preventDefault();
+    for(i= 0; i  < loginForm.length; i++){
+        currentForm = loginForm.eq(i);
+        button = buttons.eq(i);
+        button.click();
+
+    }
+
+}
+//author Ceri
+//sends data to be deleted
+function deleteSpending(event, filledForm) {
+    form = $(filledForm);
+    divForm = $(".delete_columns").has(filledForm)
+    event.preventDefault();
+    $.ajax({
+        url: "/transaction/delete/spending",   //url location of request handler
+        type: "POST",   //Type of request
+        data: form.serialize(),    //extract data from form
+        success: response => {  //If a response is received from server
+            //Remove the form after submitted
+            divForm.remove();
+        }
+    });
+}

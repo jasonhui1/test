@@ -121,6 +121,8 @@ public class TransactionController {
 
         return  "type: " + type +  " date: " + date;
     }
+
+
     /**
      * @author Ceri Griffiths
      *
@@ -214,6 +216,46 @@ public class TransactionController {
             return response.toString();
         }
     }
+
+
+    /**
+     * Function to return the total amount spent on certain categories to be used to be displayed on graph
+     * @Author Matthew
+     * @param sessionCookie - to confirm that the user is logged in
+     * @return JSON array to JS code
+     */
+    @GET
+    @Path("get/category-value")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCategoryValues(@CookieParam("sessionToken") Cookie sessionCookie){
+        User user = UserService.ValidateSessionToken(sessionCookie);
+        ArrayList<Integer> categorySpending = new ArrayList<>();
+
+        if(user != null) {
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Entertainment"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Shopping"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Groceries"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Food"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Travel"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Other"));
+            Logger.log("HERE HERE HERE HERE HERE HERE" + categorySpending);
+            return categorySpendingToJSON(categorySpending);
+        }
+        return null;
+    }
+
+    /**
+     * function to convert the array of integers (as it's in pence) to JSON array
+     * @author Matthew
+     * @param list pass in list of values which corresponds to categories
+     * @return JSarray but in string format
+     */
+    private String categorySpendingToJSON(List<Integer> list) {
+        JSONArray jsArray = new JSONArray();
+        jsArray.addAll(list);
+        return jsArray.toString();
+    }
+
 
     /**
      * @author Alfred Jones

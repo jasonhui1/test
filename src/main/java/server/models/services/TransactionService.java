@@ -369,7 +369,7 @@ public class TransactionService {
      * @param userID the id of our user
      */
 
-    public static void updateRecurringPayment(int userID){
+    public static void updateRecurringPayment(int userID) {
 
         try {
             PreparedStatement statement = DatabaseConnection.newStatement("SELECT id, recurring, date, name, spending_id, description, amount FROM Spending WHERE user_id = ?");
@@ -384,12 +384,12 @@ public class TransactionService {
                     //Loop through all results
                     while (spending_results.next()) {
                         //If this is a recurring payment
-                        if(spending_results.getInt("recurring") == 1){
+                        if (spending_results.getInt("recurring") == 1) {
 
                             Transaction transaction = new Transaction(spending_results.getString("name"), spending_results.getString("description"), spending_results.getInt("spending_id"), spending_results.getInt("recurring"), userID, spending_results.getInt("amount"), spending_results.getInt("date"));
                             int spending_id = spending_results.getInt("id");
                             //New statement for the recurring payment table
-                            statement= DatabaseConnection.newStatement("SELECT id, start_date, last_updated_date, end_date, interval FROM Recurring_Spending WHERE spending_id = ?");
+                            statement = DatabaseConnection.newStatement("SELECT id, start_date, last_updated_date, end_date, interval FROM Recurring_Spending WHERE spending_id = ?");
                             //We only want the recurring spending record with this spending_id, which is a recurring payment
                             statement.setInt(1, spending_id);
                             ResultSet recurSpending_results = statement.executeQuery();
@@ -400,7 +400,7 @@ public class TransactionService {
                                     //copy data from the recurring spending table
                                     RecurringTransaction recurringTransaction = new RecurringTransaction(spending_id, recurSpending_results.getInt("start_date"), recurSpending_results.getInt("end_date"), recurSpending_results.getInt("interval"), recurSpending_results.getInt("last_updated_date"));
                                     Date today = new Date();
-                                    int today_date = (int)(today.getTime() / 1000); //todays date in second, same as other date above
+                                    int today_date = (int) (today.getTime() / 1000); //todays date in second, same as other date above
                                     int current_calculating_date = recurringTransaction.getLastUpdatedDate();
                                     int interval = recurringTransaction.getInterval();
 
@@ -435,6 +435,38 @@ public class TransactionService {
             e.printStackTrace();
 
         }
-
     }
+
+
+    /**
+     * Function to get total amount spent on certain category by user
+     * @Author Matthew
+     * @param userID pass in the ID of the user
+     * @param category string of the category to get value of
+     * @return TOTAL amount spent on that category
+     */
+    public static int getSpending(int userID, String category) {
+        int totalAmount = 0;
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement("SELECT amount FROM SPENDING WHERE user_id = ? AND spending_id = ?");
+            if (statement != null){
+                statement.setInt(1, userID);
+                statement.setInt(2, getTransactionId(category));
+                ResultSet results = statement.executeQuery();
+                if (results != null){
+                  while (results.next()) {
+                      totalAmount = totalAmount + results.getInt("amount");
+                  }
+                }
+
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return totalAmount;
+    }
+
+
+
 }

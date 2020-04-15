@@ -62,8 +62,7 @@ function timeConverter(timestamp){
     let hour = a.getHours();
     //If minutes are below 10, display as 01 rather than 1
     let min = (a.getMinutes() < 10 ? "0" : "") + a.getMinutes();
-    let time = hour + ":" + min;
-    return time;
+    return hour + ":" + min;
 }
 
 //Author Alfred
@@ -110,9 +109,7 @@ function addInputColumn(clickedButton){
     //Select the form that has this button
     divForm = $(".spending_columns").has(clickedButton);
     //Content of a new column
-    $(divForm).after('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label class="custom-control pl-0"> Amount <span class="input-group mt-2"> <span class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </span> <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Name <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Description (optional) <input type="text" class="form-control mt-2" placeholder="Transaction description" name="description" > </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Select a category <span class="input-spending mt-2"> <span class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <span class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </span> </span> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Date <input type="datetime-local" class="form-control spending-date mt-2" name="date" max="2035-12-31T23:59" required onblur="change_end_date_min(this)"> </label> </div> <div class="form-group mb-3"> <div class="form-check"> <label class="container ml-0"> <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment? </label> </div> </div> <div class="recurring_form" hidden> <label class="custom-control pl-0"> Payment Interval <span class="form-group mb-3 row ml-0"> <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)"> <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type ml-2" onchange="setTimeInterval(this)"> <option value="hour" selected>Hour</option> <option value="day">Day</option> <option value="month">Month</option> <option value="year">Year</option> </select> </span> </label> <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden> <div class="form-group mb-3"> <label class="custom-control pl-0"> Recurring payment end date <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date" max="2035-12-31T23:59"> </label> </div> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
-
-
+    $(divForm).after('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label> Amount</label> <div class="input-group"> <div class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </div> <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required> </div> </div> <div class="form-group mb-3"> <label> Name</label> <input type="text" class="form-control" placeholder="Transaction name" name="name" required> </div> <div class="form-group mb-3"> <label> Description (optional) </label> <input type="text" class="form-control" placeholder="Transaction description" name="description" > </div> <div class="form-group mb-3"> <label> Select a category</label> <div class="input-spending"> <div class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <div class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </div> </div> </div> </div> <div class="form-group mb-3"> <label> Date</label> <input type="datetime-local" class="form-control spending-date" name="date"  required> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
     //Set the date to the current time
     setFormDate(divForm.next());
 
@@ -124,12 +121,11 @@ function addInputColumnFirst(){
 
     //Select the wrapper class of the columns
     divContainer = $("#flex-container-spending");
-    $(divContainer).append('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label class="custom-control pl-0"> Amount <span class="input-group mt-2"> <span class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </span> <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Name <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Description (optional) <input type="text" class="form-control mt-2" placeholder="Transaction description" name="description" > </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Select a category <span class="input-spending mt-2"> <span class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <span class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </span> </span> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Date <input type="datetime-local" class="form-control spending-date mt-2" name="date" max="2035-12-31T23:59" required onblur="change_end_date_min(this)"> </label> </div> <div class="form-group mb-3"> <div class="form-check"> <label class="container ml-0"> <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment? </label> </div> </div> <div class="recurring_form" hidden> <label class="custom-control pl-0"> Payment Interval <span class="form-group mb-3 row ml-0"> <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)"> <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type ml-2" onchange="setTimeInterval(this)"> <option value="hour" selected>Hour</option> <option value="day">Day</option> <option value="month">Month</option> <option value="year">Year</option> </select> </span> </label> <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden> <div class="form-group mb-3"> <label class="custom-control pl-0"> Recurring payment end date <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date" max="2035-12-31T23:59"> </label> </div> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
+    $(divContainer).append('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label> Amount</label> <div class="input-group"> <div class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </div> <input type="number" class="form-control" name="amount" min="0" step=".01" placeholder="Transaction amount" required> </div> </div> <div class="form-group mb-3"> <label> Name</label> <input type="text" class="form-control" placeholder="Transaction name" name="name" required> </div> <div class="form-group mb-3"> <label> Description (optional) </label> <input type="text" class="form-control" placeholder="Transaction description" name="description" > </div> <div class="form-group mb-3"> <label> Select a category</label> <div class="input-spending"> <div class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <div class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </div> </div> </div> </div> <div class="form-group mb-3"> <label> Date</label> <input type="datetime-local" class="form-control spending-date" name="date"  required> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
     //Select the div form just created
     divForm = $(".spendingForm").eq(0);
-    //Set the date to the current time
+     //Set the date to the current time
     setFormDate(divForm);
-    change_end_date_min(form)
 
 }
 
@@ -151,15 +147,14 @@ function submitSpending(){
     form = $(".spendingForm"); //Select all forms
     buttons = $(".btn-spending-submit"); //Select the hidden submit button in all forms
     event.preventDefault();
-    len = form.length;
     //Hide the submit successful info
     $('#informDetails').attr('hidden',true);
     //Loop all forms and submit them
-//    for(i= 0; i  < form.length; i++){
-    for(i = len -1; i >= 0; i--){
+    for(i= 0; i  < form.length; i++){
         currentForm = form.eq(i);
         button = buttons.eq(i);
         button.click();
+
     }
 }
 
@@ -176,15 +171,15 @@ function addSpending(event, filledForm){
         data: form.serialize(),    //extract data from form
         success: response => {  //If a response is received from server
 
-
-        }
-
+         }
     });
+
     //Remove the form after submitted
     divForm.remove()
     checkEmptyColumn();
     //Show submitted successful to user
     $('#informDetails').removeAttr('hidden');
+
 
 }
 
@@ -201,82 +196,32 @@ var today;
 
 //Author Jason
 function calculateCurrentTime(){
-    today = new Date();
+     today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     var timezone = today.getTimezoneOffset();
-    var hour = String("0" + ((today.getUTCHours() - Math.floor(timezone/60)) % 24)).slice(-2);
-    var min = String("0" + ((today.getUTCMinutes() + Math.floor(timezone%60)) % 60)).slice(-2);
+    var hour = String("0" + (today.getUTCHours() - Math.floor(timezone/60))).slice(-2);
+    var min = String("0" + (today.getUTCMinutes() + Math.floor(timezone%60))).slice(-2);
 
     today = yyyy + '-' + mm + '-' + dd + 'T' + hour + ':' + min; //Format needed for the date value
     setDate();
-
 }
 
 //Author Jason
 //Set the date input to the current time when the modal is shown
-//Add validation to end date (must be after start date
 function setDate(){
-    spending_date = $("form").find(".spending-date");
-    end_date = $("form").find(".recurring_end_date")
-    for (i = 0; i < spending_date.length; i++){
-        spending_date.eq(i).val(today);
-        change_end_date_min(spending_date.eq(i));
-
+    field = $(".spending-date")
+    for (i = 0; i < field.length; i++){
+        field.eq(i).val(today);
     }
 }
 
-//Author Jason
 //Set the date to the current time to the new form created
 function setFormDate(form){
     //Select the date field in the form just created
-    spending_date = $(form).find(".spending-date");
-    spending_date.val(today);
-    change_end_date_min(spending_date)
-
-}
-
-//Author Jason
-//Show the recurring fields if the payment is recurring
-function ShowRecurringForm(cb){
-
-    Block = $(".spending_columns").has(cb).find(".recurring_form")
-    field1 = Block.find(".recurring_interval_time")
-    field2 = Block.find(".recurring_interval_type")
-    field3 = Block.find(".recurring_end_date")
-    if(cb.checked){
-
-        Block.removeAttr("hidden")
-        field1.attr("required", true)
-        field2.attr("required", true)
-        field3.attr("required", true)
-
-    } else {
-
-        Block.attr("hidden",true)
-        field1.removeAttr("required")
-        field2.removeAttr("required")
-        field3.removeAttr("required")
-    }
-
-}
-
-function change_end_date_min(input){
-    Block = $("form").has(input)
-    Block.find(".recurring_end_date").attr({"min": input.val()})
-
-}
-
-function setTimeInterval(input){
-
-    Block = $(".recurring_form").has(input)
-    Time = Block.find(".recurring_interval_time").val()
-    Type = Block.find(".recurring_interval_type").val()
-    FillBlock = Block.find(".time_interval_in_hours")
-    convertType = {hour : 1, day: 24, month: 720, year: 8760}
-    FillBlock.val(Time*convertType[Type])
-
+    field = $(form).find(".spending-date");
+    field.val(today);
 }
 
 //Author Ceri
@@ -297,10 +242,9 @@ function submitIncome(){
 
 }
 
-
 //Author Ceri
 //sends data to the database
-function addIncome(event, filledForm){
+function addIncome(event, filledForm) {
 
     form = $(filledForm);
     divForm = $(".income_columns").has(filledForm)
@@ -317,7 +261,71 @@ function addIncome(event, filledForm){
         }
     });
 
+
 }
+
+
+/**
+ * The below is to do with the loading on the graph and getting details from Java to display
+ * @author Matthew Johnson
+ */
+function loadGraph() {
+    let categoryList = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; //sets all items in array to  in case nothing is returned
+    $.ajax({
+        url: "/transaction/get/category-value", //sends off for details
+        type: "GET",
+
+        success: returnedList => {
+            categoryList = returnedList;
+            let count = 0;
+            for (let listItem of returnedList) {
+                categoryList[count] = parseFloat(listItem) / 100 //goes from pence to pounds and convert to float
+                count++;
+            }
+
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Entertainment', 'Shopping', 'Groceries', 'Food', 'Travel', 'Other'],
+                    datasets: [{
+                        label: 'Money Spent £',
+                        /*The actual data to be displayed:*/
+                        data: [categoryList[0], categoryList[1], categoryList[2], categoryList[3], categoryList[4], categoryList[5]],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    });
+}
+
 
 
 

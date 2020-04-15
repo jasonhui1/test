@@ -112,13 +112,13 @@ public class UserController {
     @POST
     @Path("amend")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void amend(@FormParam("email") String email,
+    public String amend(@FormParam("email") String email,
                       @FormParam("firstName") String firstName,
                       @FormParam("lastName") String lastName,
                       @FormParam("newPassword") String newPassword,
                       @CookieParam("sessionToken") Cookie sessionCookie) {
         User user = UserService.ValidateSessionToken(sessionCookie);
-
+        Logger.log("                                     ----                HERE HERE HERE HERE HERE HERE HERE HERE    " + email);
 
         try {
 
@@ -131,12 +131,15 @@ public class UserController {
                     UserService.updatePassword(user, newPassword);
                 }
                 Logger.log("Updated details of user " + user.getId());
-
+                return "Success";
+            }else{
+                return "Email in use";
             }
 
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return "Error";
         }
 
     }
@@ -151,6 +154,8 @@ public class UserController {
             assert user != null;
             Logger.log("About to delete user " + user.getId());
             UserService.deleteUser(user);
+            UserService.signOut(user);
+
         }catch (SQLException e){
             e.printStackTrace();
         }

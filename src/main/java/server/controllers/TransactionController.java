@@ -130,7 +130,7 @@ public class TransactionController {
     @Path("delete/spending")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public String deleteSpending(@CookieParam("sessionToken") Cookie sessionCookie, String name){
+    public String deleteSpending(@CookieParam("sessionToken") Cookie sessionCookie, @FormParam("incomeName") String name){
         User user = UserService.ValidateSessionToken(sessionCookie);
         if (user != null) {
             //Add the transaction

@@ -13,6 +13,32 @@
 <body onload="loadGraph()">
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
+    <ul class="navbar-nav px-2">
+        <li class = "nav-item text-nowrap">
+            <div id="carouselAdvice" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        Don't go shopping when you're hungry
+                    </div>
+                    <div class="carousel-item">
+                        Cooking at home saves a lot more money than going out to eat
+                    </div>
+                    <div class="carousel-item">
+                        Many shops/cafes/restaurants etc. offer student discounts... Make use of them!
+                    </div>
+                    <div class="carousel-item">
+                        Can't reduce spending? Get a job to increase income!
+                    </div>
+                    <div class="carousel-item">
+                        Turn off the lights to save energy and money
+                    </div>
+                    <div class="carousel-item">
+                        Buying in bulk is quite often cheaper than buying individual packs
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" onclick="logoutRequest()" >Logout</a>
@@ -118,37 +144,39 @@
 
                                     <div class="form-group mb-3">
 
-                                        <label> Amount</label>
-                                        <div class="input-group">
+                                        <label class="custom-control pl-0"> Amount
+                                            <span class="input-group mt-2">
 
-                                            <div class="input-group-prepend" >
+                                            <span class="input-group-prepend" >
                                                 <span class="input-group-text" style="color:black; width:40px">£</span>
-                                            </div>
+                                            </span>
                                             <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required>
-                                        </div>
-
+                                        </span>
+                                        </label>
 
                                     </div>
 
 
                                     <div class="form-group mb-3">
-                                        <label> Name</label>
-                                        <input type="text" class="form-control" placeholder="Transaction name" name="name" required>
+                                        <label class="custom-control pl-0"> Name
+                                            <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required>
+                                        </label>
 
                                     </div>
 
                                     <div class="form-group mb-3">
 
-                                        <label> Description (optional) </label>
-                                        <input type="text" class="form-control" placeholder="Transaction description" name="description" >
+                                        <label class="custom-control pl-0"> Description (optional)
+                                            <input type="text" class="form-control mt-2" placeholder="Transaction description" name="description" >
+                                        </label>
 
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label> Select a category</label>
-                                        <div class="input-spending">
+                                        <label class="custom-control pl-0"> Select a category
+                                            <span class="input-spending mt-2">
 
-                                            <div class="input-group">
+                                            <span class="input-group">
 
                                                 <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)">
                                                     <option value="" selected disabled hidden>Select a category</option>
@@ -160,28 +188,64 @@
                                                     <option value="Other">Other </option>
                                                 </select>
 
-                                                <div class="input-group-append" >
+                                                <span class="input-group-append" >
                                                     <span class="input-group-text" style="color:black; width:40px">
                                                         <i style="width: 16px" class="optionsIcon fas" hidden></i>
                                                     </span>
-                                                </div>
+                                                </span>
 
 
-                                            </div>
+                                            </span>
 
-                                        </div>
+                                        </span>
+                                        </label>
 
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label> Date</label>
-                                        <input type="datetime-local" class="form-control spending-date" name="date"  required>
+                                        <label class="custom-control pl-0"> Date
+                                            <input type="datetime-local" class="form-control spending-date mt-2" name="date" max="2035-12-31T23:59" required onblur="change_end_date_min(this)">
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <div class="form-check">
+                                            <label class="container ml-0">
+                                                <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment?
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="recurring_form" hidden>
+                                        <label class="custom-control pl-0"> Payment Interval
+                                        <span class="form-group mb-3 row ml-0">
+
+                                            <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)">
+
+                                            <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type ml-2" onchange="setTimeInterval(this)">
+                                                <option value="hour" selected>Hour</option>
+                                                <option value="day">Day</option>
+                                                <option value="month">Month</option>
+                                                <option value="year">Year</option>
+                                            </select>
+                                        </span>
+                                        </label>
+
+                                        <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden>
+
+                                        <div class="form-group mb-3">
+                                            <label class="custom-control pl-0"> Recurring payment end date
+                                                <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date" max="2035-12-31T23:59">
+                                            </label>
+                                        </div>
                                     </div>
 
                                     <div class="form-group mb-5">
                                         <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button>
                                         <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button>
                                     </div>
+
 
                                     <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button>
 
@@ -260,9 +324,12 @@
     </div>
 
 </div>
+
 </body>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
+
 <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script src="js/Chart.min.js"></script>
 <script src="js/datatables.min.js"></script>
@@ -270,4 +337,43 @@
 <script src="js/logout.js"></script>
 <script src="js/dashboard.js"></script>
 
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
 </html>

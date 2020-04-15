@@ -9,11 +9,36 @@
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/datatables.min.css" rel="stylesheet" >
     <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet" >
-
 </head>
-<body>
+<body onload="loadGraph()">
 <nav class="navbar navbar-dark fixed-top p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 text-center" href="#">Budget</a>
+    <ul class="navbar-nav px-2">
+        <li class = "nav-item text-nowrap">
+            <div id="carouselAdvice" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        Don't go shopping when you're hungry
+                    </div>
+                    <div class="carousel-item">
+                        Cooking at home saves a lot more money than going out to eat
+                    </div>
+                    <div class="carousel-item">
+                        Many shops/cafes/restaurants etc. offer student discounts... Make use of them!
+                    </div>
+                    <div class="carousel-item">
+                        Can't reduce spending? Get a job to increase income!
+                    </div>
+                    <div class="carousel-item">
+                        Turn off the lights to save energy and money
+                    </div>
+                    <div class="carousel-item">
+                        Buying in bulk is quite often cheaper than buying individual packs
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" onclick="logoutRequest()" >Logout</a>
@@ -76,6 +101,7 @@
                                             </thead>
                                             <tbody id="spending_data">
                                             </tbody>
+                                            <button class="btn btn-primary float-right" data-toggle="modal" onclick="" data-target="#deleteModal" >Remove Transaction</button>
                                         </table>
                                     </div>
                                     <!-- Income table -->
@@ -175,6 +201,7 @@
 
                                     </div>
 
+
                                     <div class="form-group mb-3">
                                         <label class="custom-control pl-0"> Name
                                             <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required>
@@ -232,6 +259,7 @@
                                                 <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment?
                                             </label>
                                         </div>
+
                                     </div>
 
                                     <div class="recurring_form" hidden>
@@ -270,6 +298,7 @@
                             </div>
 
                         </div>
+                        <!--                        my-3 mx-auto-->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -338,12 +367,40 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="incomeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Remove Transaction</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="delete_columns">
+                        <form class="deleteForm" onsubmit="deleteSpending(event, this)">
+                            <div class="form-group mb-3">
+                                <label class="col-form-label"> Transaction to remove:</label>
+                                <input type="text" class="form-control" id="name-to-delete" name="incomeName">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-delete-submit" hidden>Submit Form</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary " onclick="submitDelete()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
 </body>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
 
 <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 <script src="js/Chart.min.js"></script>
@@ -352,43 +409,4 @@
 <script src="js/logout.js"></script>
 <script src="js/dashboard.js"></script>
 
-<script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-</script>
 </html>

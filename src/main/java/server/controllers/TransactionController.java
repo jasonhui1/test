@@ -123,7 +123,34 @@ public class TransactionController {
     }
 
 
+    /**
+     * @author Ceri Griffiths
+     *
+     * This is a template for how we can send our data to remove a transaction from the database
+     */
+    @POST
+    @Path("delete/spending")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String deleteSpending(@CookieParam("sessionToken") Cookie sessionCookie, @FormParam("incomeName") String name){
+        User user = UserService.ValidateSessionToken(sessionCookie);
+        if (user != null) {
+            //Add the transaction
+            try {
+                TransactionService.deleteSpending(user, name);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+            Logger.log("A user has removed a transaction");
 
+        } else {
+            //The user isn't logged in and shouldn't be able to make database changes
+            Logger.log("An unauthorised attempted at adding an income was occurred");
+            return "error";
+        }
+
+        return name + " deleted";
+    }
     /**
      * @author Alfred Jones
      * @param sessionCookie The cookie of the user
@@ -158,7 +185,6 @@ public class TransactionController {
             return response.toString();
         }
     }
-
     /**
      * @author Alfred Jones
      * @param sessionCookie The cookie of the user
@@ -191,6 +217,46 @@ public class TransactionController {
         }
     }
 
+
+    /**
+     * Function to return the total amount spent on certain categories to be used to be displayed on graph
+     * @Author Matthew
+     * @param sessionCookie - to confirm that the user is logged in
+     * @return JSON array to JS code
+     */
+    @GET
+    @Path("get/category-value")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCategoryValues(@CookieParam("sessionToken") Cookie sessionCookie){
+        User user = UserService.ValidateSessionToken(sessionCookie);
+        ArrayList<Integer> categorySpending = new ArrayList<>();
+
+        if(user != null) {
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Entertainment"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Shopping"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Groceries"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Food"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Travel"));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Other"));
+            Logger.log("HERE HERE HERE HERE HERE HERE" + categorySpending);
+            return categorySpendingToJSON(categorySpending);
+        }
+        return null;
+    }
+
+    /**
+     * function to convert the array of integers (as it's in pence) to JSON array
+     * @author Matthew
+     * @param list pass in list of values which corresponds to categories
+     * @return JSarray but in string format
+     */
+    private String categorySpendingToJSON(List<Integer> list) {
+        JSONArray jsArray = new JSONArray();
+        jsArray.addAll(list);
+        return jsArray.toString();
+    }
+
+
     /**
      * @author Alfred Jones
      * @return json
@@ -222,6 +288,5 @@ public class TransactionController {
         }
         return messageList.toString();
     }
-
 
 }

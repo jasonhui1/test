@@ -2,7 +2,6 @@
 //Run on page startup
 var budget = -1
 $(document).ready(function () {
-
     getIncome();
     getSpending();
     getBudget();
@@ -66,8 +65,7 @@ function timeConverter(timestamp){
     let hour = a.getHours();
     //If minutes are below 10, display as 01 rather than 1
     let min = (a.getMinutes() < 10 ? "0" : "") + a.getMinutes();
-    let time = hour + ":" + min;
-    return time;
+    return hour + ":" + min;
 }
 
 //Author Alfred
@@ -115,8 +113,6 @@ function addInputColumn(clickedButton){
     divForm = $(".spending_columns").has(clickedButton);
     //Content of a new column
     $(divForm).after('<div class="spending_columns col-md-5 mx-auto"> <form class="spendingForm" onsubmit="addSpending(event,this)"> <div class="form-group mb-3"> <label class="custom-control pl-0"> Amount <span class="input-group mt-2"> <span class="input-group-prepend" > <span class="input-group-text" style="color:black; width:40px">£</span> </span> <input type="number" class="form-control" name="amount" min="0" max="21474836.47" step=".01" placeholder="Transaction amount" required> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Name <input type="text" class="form-control mt-2" placeholder="Transaction name" name="name" required> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Description (optional) <input type="text" class="form-control mt-2" placeholder="Transaction description" name="description" > </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Select a category <span class="input-spending mt-2"> <span class="input-group"> <select required name="type" class="form-control custom-select inline" onchange="changeCateIcon(this)"> <option value="" selected disabled hidden>Select a category</option> <option value="Entertainment">Entertainment</option> <option value="Shopping">Shopping</option> <option value="Groceries">Groceries </option> <option value="Food">Food </option> <option value="Travel">Travel </option> <option value="Other">Other </option> </select> <span class="input-group-append" > <span class="input-group-text" style="color:black; width:40px"> <i style="width: 16px" class="optionsIcon fas" hidden></i> </span> </span> </span> </span> </label> </div> <div class="form-group mb-3"> <label class="custom-control pl-0"> Date <input type="datetime-local" class="form-control spending-date mt-2" name="date" max="2035-12-31T23:59" required onblur="change_end_date_min(this)"> </label> </div> <div class="form-group mb-3"> <div class="form-check"> <label class="container ml-0"> <input class="form-check-input" type="checkbox" onchange="ShowRecurringForm(this)">Recurring payment? </label> </div> </div> <div class="recurring_form" hidden> <label class="custom-control pl-0"> Payment Interval <span class="form-group mb-3 row ml-0"> <input type="number" min="0.1" max="2147483647" step="0.1" class="form-control recurring_interval_time mt-2 col-4" onchange="setTimeInterval(this)"> <select  name="type" class="form-control custom-select col-4 mt-2 recurring_interval_type ml-2" onchange="setTimeInterval(this)"> <option value="hour" selected>Hour</option> <option value="day">Day</option> <option value="month">Month</option> <option value="year">Year</option> </select> </span> </label> <input type="number" class="time_interval_in_hours" value="0" step= "0.1" name="recurring_interval" hidden> <div class="form-group mb-3"> <label class="custom-control pl-0"> Recurring payment end date <input type="datetime-local" class="form-control recurring_end_date mt-2" name="end_date" max="2035-12-31T23:59"> </label> </div> </div> <div class="form-group mb-5"> <button type="button" class="btn btn-primary mx-auto" onclick="addInputColumn(this)"> Add New Column</button> <button type="button" class="btn btn-secondary mx-auto" onclick="removeInputColumn(this)"> Remove Column</button> </div> <button type="submit" class="btn btn-primary btn-spending-submit" hidden>Submit Form</button> </form> </div>')
-
-
     //Set the date to the current time
     setFormDate(divForm.next());
 
@@ -180,10 +176,9 @@ function addSpending(event, filledForm){
         data: form.serialize(),    //extract data from form
         success: response => {  //If a response is received from server
 
-
-        }
-
+         }
     });
+
     //Remove the form after submitted
     divForm.remove()
     checkEmptyColumn();
@@ -311,7 +306,7 @@ function submitIncome(){
 
 //Author Ceri
 //sends data to the database
-function addIncome(event, filledForm){
+function addIncome(event, filledForm) {
 
     form = $(filledForm);
     divForm = $(".income_columns").has(filledForm)
@@ -329,6 +324,7 @@ function addIncome(event, filledForm){
     });
 
 }
+
 
 //Author Jason
 //add/change budget to the database
@@ -402,6 +398,100 @@ function updateShowBudget(budget){
 function submitBudget(){
 
    $("#budgetFormButton").click();
+}
+
+/**
+ * The below is to do with the loading on the graph and getting details from Java to display
+ * @author Matthew Johnson
+ */
+function loadGraph() {
+    let categoryList = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; //sets all items in array to  in case nothing is returned
+    $.ajax({
+        url: "/transaction/get/category-value", //sends off for details
+        type: "GET",
+
+        success: returnedList => {
+            categoryList = returnedList;
+            let count = 0;
+            for (let listItem of returnedList) {
+                categoryList[count] = parseFloat(listItem) / 100 //goes from pence to pounds and convert to float
+                count++;
+            }
+
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Entertainment', 'Shopping', 'Groceries', 'Food', 'Travel', 'Other'],
+                    datasets: [{
+                        label: 'Money Spent £',
+                        /*The actual data to be displayed:*/
+                        data: [categoryList[0], categoryList[1], categoryList[2], categoryList[3], categoryList[4], categoryList[5]],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    });
+}
+
+
+
+
+function submitDelete(){
+
+    loginForm = $(".incomeForm"); //Select all forms
+    buttons = $(".btn-delete-submit"); //Select the hidden submit button in all forms
+    event.preventDefault();
+    for(i= 0; i  < loginForm.length; i++){
+        currentForm = loginForm.eq(i);
+        button = buttons.eq(i);
+        button.click();
+
+    }
+
+}
+//author Ceri
+//sends data to be deleted
+function deleteSpending(event, filledForm) {
+    form = $(filledForm);
+    divForm = $(".delete_columns").has(filledForm)
+    event.preventDefault();
+    $.ajax({
+        url: "/transaction/delete/spending",   //url location of request handler
+        type: "POST",   //Type of request
+        data: form.serialize(),    //extract data from form
+        success: response => {  //If a response is received from server
+            //Remove the form after submitted
+            divForm.remove();
+        }
+    });
 }
 
 

@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="CSED2d" />
         <module name="CSED2" />
+        <module name="CSED2c" />
       </profile>
     </annotationProcessing>
   </component>

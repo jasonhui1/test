@@ -281,7 +281,7 @@ function setTimeInterval(input){
     convertType = {hour : 1, day: 24, month: 720, year: 8760}
     second = Time*convertType[Type]
     FillBlock.val(second)
-    TimeBlock.attr({"max": (2147483640/convertType[Type]).toFixed(1)})
+    TimeBlock.attr({"max": (2147483640/convertType[Type]/3600).toFixed(1)})
 
 }
 

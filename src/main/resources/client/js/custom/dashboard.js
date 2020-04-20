@@ -406,8 +406,16 @@ function submitBudget(){
  */
 function loadGraph() {
     let categoryList = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; //sets all items in array to  in case nothing is returned
+    const checkBox = document.getElementById("myCheck");
+    let url = "";
+    if (checkBox.checked === true){
+        url = "/transaction/get/category-value-Recurring";
+    } else {
+        url = "/transaction/get/category-value-NonRecurring"; //url for non recurring payments
+    }
+
     $.ajax({
-        url: "/transaction/get/category-value", //sends off for details
+        url: url, //sends off for details
         type: "GET",
 
         success: returnedList => {
@@ -460,8 +468,6 @@ function loadGraph() {
         }
     });
 }
-
-
 
 
 function submitDelete(){

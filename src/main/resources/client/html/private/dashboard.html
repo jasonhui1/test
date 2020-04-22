@@ -63,7 +63,19 @@
             <div class="container-fluid text-center">
                 <div class="row pb-5">
                     <div class="col-lg-12 container">
+                        <label class="container">Display Recurring Payments on Chart
+                            <input type="checkbox" id="myCheck" onclick="loadGraph()" checked>
+                        </label>
+
+                        <div class="col-auto container">
+                            <input type="radio" id="graph1" name="graph" value="male" onclick="loadGraph()" checked>
+                            <label for="graph1">Category Payments Graph</label><br>
+                            <input type="radio" id="graph2" name="graph" value="female" onclick="loadGraph()">
+                            <label for="graph2">Budgeting Graph</label><br>
+                        </div>
+
                         <canvas id="myChart" ></canvas>
+
                     </div>
                 </div>
                 <h3 class="mb-3"> Your budget for this month: <span id="showBudget">not set</span> </h3>

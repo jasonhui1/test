@@ -372,9 +372,7 @@ function getBudget(){
             budget = budgetAmount
             updateShowBudget(budgetAmount)
         }
-
     });
-
 }
 
 //Author Jason
@@ -404,10 +402,30 @@ function submitBudget(){
  * The below is to do with the loading on the graph and getting details from Java to display
  * @author Matthew Johnson
  */
+let url = "";
 function loadGraph() {
+    const radioButtonGraph1 = document.getElementById("graph1");
+    const radioButtonGraph2 = document.getElementById("graph2");
+    const checkBox = document.getElementById("myCheck");
+
+    if (checkBox.checked === true){
+        url = "/transaction/get/category-value-Recurring";
+    } else {
+        url = "/transaction/get/category-value-NonRecurring"; //url for non recurring payments
+    }
+
+    if (radioButtonGraph1.checked === true) {
+        loadGraph1();
+    } else if (radioButtonGraph2.checked === true) {
+        loadGraph2();
+    }
+}
+
+function loadGraph1(){
     let categoryList = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; //sets all items in array to  in case nothing is returned
+    alert("url1" + url);
     $.ajax({
-        url: "/transaction/get/category-value", //sends off for details
+        url: url, //sends off for details
         type: "GET",
 
         success: returnedList => {
@@ -418,9 +436,8 @@ function loadGraph() {
                 count++;
             }
 
-
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const myChart = new Chart(ctx, {
+                const ctx = document.getElementById('myChart').getContext('2d');
+                myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Entertainment', 'Shopping', 'Groceries', 'Food', 'Travel', 'Other'],
@@ -428,6 +445,63 @@ function loadGraph() {
                         label: 'Money Spent £',
                         /*The actual data to be displayed:*/
                         data: [categoryList[0], categoryList[1], categoryList[2], categoryList[3], categoryList[4], categoryList[5]],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        }
+    });
+}
+
+
+function loadGraph2(){
+    let totalCost = 0;
+
+    $.ajax({
+        url: url, //sends off for details
+        type: "GET",
+
+        success: returnedList => {
+            for (let listItem of returnedList) {
+                totalCost = totalCost + parseFloat(listItem)
+            }
+            totalCost = totalCost/100;
+
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Outgoing Costs', 'Budget'],
+                    datasets: [{
+                        label: 'Money Spent £',
+                        /*The actual data to be displayed:*/
+                        data: [totalCost, 100],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',

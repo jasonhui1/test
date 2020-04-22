@@ -403,6 +403,7 @@ function submitBudget(){
  * @author Matthew Johnson
  */
 let url = "";
+
 function loadGraph() {
     const radioButtonGraph1 = document.getElementById("graph1");
     const radioButtonGraph2 = document.getElementById("graph2");
@@ -423,7 +424,6 @@ function loadGraph() {
 
 function loadGraph1(){
     let categoryList = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]; //sets all items in array to  in case nothing is returned
-    alert("url1" + url);
     $.ajax({
         url: url, //sends off for details
         type: "GET",
@@ -435,7 +435,6 @@ function loadGraph1(){
                 categoryList[count] = parseFloat(listItem) / 100 //goes from pence to pounds and convert to float
                 count++;
             }
-
                 const ctx = document.getElementById('myChart').getContext('2d');
                 myChart = new Chart(ctx, {
                 type: 'bar',
@@ -475,6 +474,7 @@ function loadGraph1(){
                 }
             });
         }
+
     });
 }
 
@@ -492,8 +492,9 @@ function loadGraph2(){
             }
             totalCost = totalCost/100;
 
-
+            getBudget();
             const ctx = document.getElementById('myChart').getContext('2d');
+
             myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -501,7 +502,7 @@ function loadGraph2(){
                     datasets: [{
                         label: 'Money Spent £',
                         /*The actual data to be displayed:*/
-                        data: [totalCost, 100],
+                        data: [totalCost, budget/100],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',

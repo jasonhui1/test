@@ -480,10 +480,16 @@ public class TransactionService {
      * @param category string of the category to get value of
      * @return TOTAL amount spent on that category
      */
-    public static int getSpending(int userID, String category) {
+    public static int getSpending(int userID, String category, Boolean recurringPayment) {
         int totalAmount = 0;
+        String sqlStatement;
+        if (recurringPayment){
+            sqlStatement = "SELECT amount FROM SPENDING WHERE user_id = ? AND spending_id = ?";
+        }else{
+            sqlStatement = "SELECT amount FROM SPENDING WHERE user_id = ? AND spending_id = ? AND recurring = 0";
+        }
         try {
-            PreparedStatement statement = DatabaseConnection.newStatement("SELECT amount FROM SPENDING WHERE user_id = ? AND spending_id = ?");
+            PreparedStatement statement = DatabaseConnection.newStatement(sqlStatement);
             if (statement != null){
                 statement.setInt(1, userID);
                 statement.setInt(2, getTransactionId(category));

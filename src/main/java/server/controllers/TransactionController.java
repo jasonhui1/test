@@ -264,24 +264,39 @@ public class TransactionController {
      * @return JSON array to JS code
      */
     @GET
-    @Path("get/category-value")
+    @Path("get/category-value-Recurring")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getCategoryValues(@CookieParam("sessionToken") Cookie sessionCookie){
+    public String getCategoryValueWithRecurringPayments(@CookieParam("sessionToken") Cookie sessionCookie){
+        return getCategoryValues(sessionCookie, true);
+    }
+
+    @GET
+    @Path("get/category-value-NonRecurring")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCategoryValueNoRecurring(@CookieParam("sessionToken") Cookie sessionCookie){
+        return getCategoryValues(sessionCookie, false);
+    }
+
+    public String getCategoryValues(Cookie sessionCookie, Boolean recurringPayment){
         User user = UserService.ValidateSessionToken(sessionCookie);
         ArrayList<Integer> categorySpending = new ArrayList<>();
 
         if(user != null) {
-            categorySpending.add(TransactionService.getSpending(user.getId(), "Entertainment"));
-            categorySpending.add(TransactionService.getSpending(user.getId(), "Shopping"));
-            categorySpending.add(TransactionService.getSpending(user.getId(), "Groceries"));
-            categorySpending.add(TransactionService.getSpending(user.getId(), "Food"));
-            categorySpending.add(TransactionService.getSpending(user.getId(), "Travel"));
-            categorySpending.add(TransactionService.getSpending(user.getId(), "Other"));
-            Logger.log("HERE HERE HERE HERE HERE HERE" + categorySpending);
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Entertainment", recurringPayment));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Shopping", recurringPayment));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Groceries", recurringPayment));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Food", recurringPayment));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Travel", recurringPayment));
+            categorySpending.add(TransactionService.getSpending(user.getId(), "Other", recurringPayment));
             return categorySpendingToJSON(categorySpending);
         }
         return null;
     }
+
+
+
+
+
 
     /**
      * function to convert the array of integers (as it's in pence) to JSON array

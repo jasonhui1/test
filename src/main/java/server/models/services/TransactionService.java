@@ -205,6 +205,9 @@ public class TransactionService {
         }
     }
 
+
+
+
     /**
      * @author Alfred
      * @param tableName the name of the table
@@ -312,6 +315,38 @@ public class TransactionService {
             if (statement != null) {
                 //We only want transactions from our user
                 statement.setInt(1, userID);
+                ResultSet results = statement.executeQuery();
+                if (results != null) {
+                    //Loop through all transactions
+                    while (results.next()) {
+                        //Add transaction to list
+                        transactionList.add(new Transaction(results.getInt("id"), results.getInt("amount"), results.getInt("date"), results.getString("name"), results.getString("description"), results.getInt("spending_id"), results.getInt("recurring")));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            //An error occurred
+            String error = "Database error - can't select all from 'Spending_Type' table: " + e.getMessage();
+            e.printStackTrace();
+            return error;
+        }
+        return "OK";
+    }
+
+    /**
+     * @author Alfred
+     * @param transactionList the list to populate
+     * @param userID the id of our user
+     * @return if the get was successful
+     */
+    public static String getRelevantTransactions(List<Transaction> transactionList, int userID, int timespan){
+        transactionList.clear();
+        try {
+            PreparedStatement statement = DatabaseConnection.newStatement("SELECT date, id, spending_id, name, amount, description, recurring FROM Spending WHERE (user_id = ? && date >= ?) ORDER BY date DESC");
+            if (statement != null) {
+                //We only want transactions from our user
+                statement.setInt(1, userID);
+                statement.setInt(2, timespan);
                 ResultSet results = statement.executeQuery();
                 if (results != null) {
                     //Loop through all transactions

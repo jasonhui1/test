@@ -124,6 +124,45 @@ public class TransactionController {
 
 
     /**
+     * @author Alfred Jones
+     *
+     * Gets our predicted costs
+     */
+    @GET
+    @Path("PredictCosts")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
+    @SuppressWarnings("unchecked")
+    public String PredictCosts(@CookieParam("sessionToken") Cookie sessionCookie) throws ParseException {
+        JSONObject response = new JSONObject();
+        User user = UserService.ValidateSessionToken(sessionCookie);
+
+        if (user != null) {
+            int total = 0;
+            //Add the transaction
+            ArrayList<Transaction> transactions = new ArrayList<>();
+            try {
+                int time = (int)((System.currentTimeMillis() / 1000)- 60*60*24*5);
+                TransactionService.getRelevantTransactions(transactions,user.getId(), time);
+
+                for(Transaction t : transactions){
+                    total += t.getAmount();
+                }
+                response.put("budget", (total/5)*30);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+
+        } else {
+            Logger.log("An unauthorised attempt at getting a budget occurred");
+            return "error";
+        }
+
+        return  response.toJSONString();
+    }
+
+
+    /**
      * @author Ceri Griffiths
      *
      * This is a template for how we can send our data to remove a transaction from the database

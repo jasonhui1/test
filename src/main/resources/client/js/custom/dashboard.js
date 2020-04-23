@@ -5,7 +5,7 @@ $(document).ready(function () {
     getIncome();
     getSpending();
     getBudget();
-
+    getPrediction();
 });
 
 
@@ -301,6 +301,17 @@ function submitIncome(){
 
     }
 
+}
+
+function getPrediction(){
+
+    $.ajax({
+        url: "/transaction/PredictCosts",
+        type: "GET",
+        success: budget => {
+                $('#showPredictions').innerHTML = budget.budget;
+            }
+    });
 }
 
 

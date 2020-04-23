@@ -117,8 +117,7 @@ public class UserController {
                       @FormParam("lastName") String lastName,
                       @FormParam("newPassword") String newPassword,
                       @CookieParam("sessionToken") Cookie sessionCookie) {
-        User user = UserService.ValidateSessionToken(sessionCookie);
-        Logger.log("                                     ----                HERE HERE HERE HERE HERE HERE HERE HERE    " + email);
+        User user = UserService.ValidateSessionToken(sessionCookie);  //returns user if sessionCookie is valid 
 
         try {
 

@@ -4,3 +4,29 @@
 h1  {
 	font-size: 42px
 }
+caption {
+	background-color: #18a964;
+	background-size: 300px 100px;
+	text-align:left;
+	border-top-left-radius:6px;
+	border-top-right-radius: 6px;
+	-moz-border-top-left-radius:6px;
+	-moz-border-top-right-radius:6px;
+}
+table {
+	border: 3px solid #18a964;
+	border-right-color: #18a964;
+	border-right-width: 3px;
+	border-left-color: #18a964;
+	border-left-width: 3px;
+	border-collapse: collapse;
+	width: 30%;
+	border-bottom-left-radius:6px;
+	border-bottom-right-radius: 6px;
+	-moz-border-bottom-left-radius:6px;
+	-moz-border-bottom-right-radius:6px;
+}
+tr {
+	border: 2px solid gray;
+	width: 50%;
+}

@@ -1,9 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
+body{
+	margin:0;
+}
 
 h1  {
 	font-size: 42px;
 	font-family: Arial;
+
 }
 caption {
 	background-color: #18a964;
@@ -21,19 +25,62 @@ table {
 	border-left-color: #18a964;
 	border-left-width: 3px;
 	border-collapse: collapse;
-	width: 30%;
+	width: 90%;
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius: 6px;
 	-moz-border-bottom-left-radius:6px;
 	-moz-border-bottom-right-radius:6px;
+}
+
+table.center {
+	margin-left: auto; 
+	margin-right: auto;
 }
 tr {
 	border: 2px solid gray;
 	width: 50%;
 }
 
-.prizeSection {
-	display: inline-flex;
-	justify-content: space-between;
-	width: 100%;
+/*Sectioning*/
+.section {
+
+	margin-top: 0;
+  	margin-bottom: 0;
+  	padding-top: 10px;
+  	padding-bottom: 10px;
 }
+
+.navbar {
+	background-color: #18a964;
+	padding-left: 16px;
+	color: white;
+}
+
+.prize {
+	background-color: white;
+	text-align: center;
+}
+
+.leaderboard {
+	background-color: #18a964;
+	padding-left: 16px;
+
+}
+
+.submission {
+	background-color: white;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer {
+	background-color: #18a964;
+	position: fixed;
+	left: 0;
+	bottom: 0;	
+	width: 100%;
+	color: white;
+	text-align: right;
+}
+
+

@@ -6,6 +6,7 @@ h1  {
 	font-family: Arial;
 }
 .submission caption {
+	font-size : 25px;
 	background-color: #18a964;
 	text-align:left;
 	border-top-left-radius:6px;

@@ -5,31 +5,35 @@ h1  {
 	font-size: 42px;
 	font-family: Arial;
 }
-caption {
+.submission caption {
 	background-color: #18a964;
-	background-size: 300px 100px;
 	text-align:left;
 	border-top-left-radius:6px;
 	border-top-right-radius: 6px;
 	-moz-border-top-left-radius:6px;
 	-moz-border-top-right-radius:6px;
 }
-table {
+.submission table {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
 	border: 3px solid #18a964;
 	border-right-color: #18a964;
-	border-right-width: 3px;
+	border-right-width: 5px;
 	border-left-color: #18a964;
-	border-left-width: 3px;
+	border-left-width: 5px;
+	border-bottom-color: #18a964;
+	border-bottom-width: 5px;
 	border-collapse: collapse;
-	width: 30%;
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius: 6px;
 	-moz-border-bottom-left-radius:6px;
 	-moz-border-bottom-right-radius:6px;
+	margin: 60px;
 }
-tr {
+ .subTable tr {
 	border: 2px solid gray;
-	width: 50%;
+	width: 50%;	
 }
 
 .prizeSection {

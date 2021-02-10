@@ -17,30 +17,38 @@
 </head>
 
 <body>
-	<table>
-		<caption>Your current submission</caption>
-		<tr>
-		  <td>Amount of general rubbish</td>
-		  <td>24.9kg</td> 
-		  <td><button type="button" onclick="alert('Hello world!')">EDIT</button></td>
-		</tr>
-		<tr>
-		  <td>Amount recycled this week</td>
-		  <td>24.9kg</td> 
-		  <td><button type="button" onclick="alert('Hello world!')">EDIT</button></td>
-		</tr>
-	  </table>
+	<div class="submission">
+		<table class="subTable">
+			<caption>Your current submission</caption>
+			<tr>
+			<td>Amount of general rubbish</td>
+			<!--This value needs to be updated after editing -->
+			<td>24.9kg</td> 
+			<!--Button should allow amount to be edited/updated to the database -->
+			<td><button type="button" onclick="alert('Back end')">EDIT</button></td>
+			</tr>
+			<tr>
+			<td>Amount recycled this week</td>
+			<!--This value needs to be updated after editing -->
+			<td>24.9kg</td> 
+			<!--Button should allow amount to be edited/updated to the database -->
+			<td><button type="button" onclick="alert('Back end')">EDIT</button></td>
+			</tr>
+		</table>
 
-	  <table>
-		<caption>Raffle details</caption>
-		<tr>
-		  <td>Your total recycling percentages</td>
-		  <td>24.9%</td> 
-		</tr>
-		<tr>
-		  <td>Next rubbish collection date</td>
-		  <td>11/12/2020</td> 
-		</tr>
-	  </table>
+		<table class="subTable">
+			<caption>Raffle details</caption>
+			<tr>
+			<td>Your total recycling percentages</td>
+			<!--Percentage from data -->
+			<td>24.9%</td> 
+			</tr>
+			<tr>
+			<td>Next rubbish collection date</td>
+			<!--Random collection date???-->
+			<td>11/12/2020</td> 
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

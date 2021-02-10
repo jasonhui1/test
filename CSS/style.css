@@ -30,3 +30,9 @@ tr {
 	border: 2px solid gray;
 	width: 50%;
 }
+
+.prizeSection {
+	display: inline-flex;
+	justify-content: space-between;
+	width: 100%;
+}

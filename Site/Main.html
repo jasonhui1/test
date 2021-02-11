@@ -4,19 +4,26 @@
 <meta charset="utf-8">
 <title>Untitled Document</title>
 <link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
+  
+  	<!--navigation bar-->
+<div class="topnav">
 
-<div class="section navbar">
-	<img src="../images/UoB_Logo.svg">
-</div>
-<div class="section prize">
-	<h1>This raffle's prize</h1>
-	 
+	<div class="left">
+  		<img src="../images/UoB_Logo.svg">
+	</div>
+
+	<div class="right">
+			<a href="#"><span class="glyphicon glyphicon-log-out">Log out</span></a>
+	</div>
+
 </div>
 
-<div class="section leaderboard">Leaderboard</div>
-<div class="section submission">
 <body>
+
 	<div class="submission">
 		<table class="subTable">
 			<caption>Your current submission</caption>
@@ -35,6 +42,67 @@
 			<td><button type="button" onclick="alert('Back end')">EDIT</button></td>
 			</tr>
 		</table>
+
+
+
+	  <!--Creating the Prize Section showcasing Prize and its description-->
+  <div class="middleSection">
+	  <h2> This raffle's prize </h2>
+
+		<div class="prizeSection">
+			<div class="column">
+
+				<div class="prize">
+					<img src="dreamweaver.jpg" alt="Prize" width="200" height="100">
+				</div> 
+
+			</div>
+
+			<div class="column">
+
+				<div class="prize">
+					<p1> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p1>
+				</div> 
+
+			</div>
+
+		</div>
+		<h2> Raffle ends 1/4/2021</h2>
+	</div>
+  
+  <div class="section leaderboard">Leaderboard</div>
+  <div class="section submission">
+
+	<!--Creating the submission table where users input weight-->
+	<table>
+
+	<table class="center">
+
+		<caption>Your current submission</caption>
+		<tr>
+		  <td>Amount of general rubbish</td>
+		  <td>24.9kg</td> 
+		  <td><button type="button" onclick="alert('Hello world!')">EDIT</button></td>
+		</tr>
+		<tr>
+		  <td>Amount recycled this week</td>
+		  <td>24.9kg</td> 
+		  <td><button type="button" onclick="alert('Hello world!')">EDIT</button></td>
+		</tr>
+	  </table>
+
+	  <table class="center">
+		<caption>Raffle details</caption>
+		<tr>
+		  <td>Your total recycling percentages</td>
+		  <td>24.9%</td> 
+		</tr>
+		<tr>
+		  <td>Next rubbish collection date</td>
+		  <td>11/12/2020</td> 
+		</tr>
+    </table>
+
 
 		<table class="subTable">
 			<caption>Raffle details</caption>

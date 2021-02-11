@@ -1,15 +1,29 @@
 @charset "utf-8";
 /* CSS Document */
-body{
-	margin:0;
+* {
+	margin: 0;
 }
-
 
 h1  {
 	font-size: 42px;
 	font-family: Arial;
-
 }
+
+h2 { 
+	color: #4CAF50;
+	font-family: 'Helvetica Neue', sans-serif; 
+	font-size: 50px; 
+	font-weight: bold; 
+	letter-spacing: -1px; line-height: 1; 
+	text-align: center; 
+	text-shadow: 1px 1px #18a964;
+	padding: 20px;
+}
+/*class for h2 to remove white margin*/
+h2.noMargin {
+	margin: 0px;
+}
+
 .submission caption {
 	font-size : 25px;
 	background-color: #18a964;
@@ -35,7 +49,7 @@ h1  {
 	border-bottom-right-radius: 6px;
 	-moz-border-bottom-left-radius:6px;
 	-moz-border-bottom-right-radius:6px;
-	margin: 60px;
+	margin: 30px;
 }
 
  .subTable tr {
@@ -46,24 +60,7 @@ h1  {
 
 
 
-* {
-	margin: 0;
-  }
-  
-h1:hover {
-	letter-spacing: 10px;
-  }
 
-h2 { 
-	color: #4CAF50;
-	font-family: 'Helvetica Neue', sans-serif; 
-	font-size: 50px; font-weight: bold; 
-	letter-spacing: -1px; line-height: 1; 
-	text-align: center; 
-	text-transform: uppercase;
-	text-shadow: 1px 1px #18a964;
-	
-}
 
 .middleSection {
 	background-image: linear-gradient(rgb(192, 236, 200), #18a964);
@@ -71,6 +68,7 @@ h2 {
   	background-position: center; /* Center the image */
   	background-repeat: no-repeat; /* Do not repeat the image */
   	background-size: cover; /* Resize the background image to cover the entire container */
+  	margin-top: 0px;
 }
 
 .prizeSection {
@@ -105,9 +103,21 @@ body {
   /* Style the counter cards */
 .prize {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+	
+	
+	height: 100%;
+	/*background-color: #f1f1f1;*/
+	
+}
+
+.prizeImage {
+	background: no-repeat center;
+	background-image: url('../images/dreamweaver.jpg');
+	background-size: contain;
+}
+.prizeDescription {
 	padding: 16px;
 	text-align: center;
-	background-color: #f1f1f1;
 }
   
 /* Responsive columns - one column layout (vertical) on small screens */
@@ -121,22 +131,28 @@ body {
 
 /*Sectioning*/
 .section {
-
 	margin-top: 0;
   	margin-bottom: 0;
   	padding-top: 10px;
   	padding-bottom: 10px;
 }
 
-.navbar {
+.topnav {
 	background-color: #18a964;
-	margin: 0;
+	margin-bottom: 0px;
 	padding-left: 16px;
+	padding-right: 16px;
 	color: white;
-	display: flex;
-	justify-content: space-between;
 	overflow: hidden;
 }
+.navbarLeft{
+	float: left;
+}
+.navbarRight{
+	float: right;
+}
+
+
 
 .prize {
 	background-color: white;
@@ -157,7 +173,7 @@ body {
 
 .footer {
 	background-color: #18a964;
-	position: fixed;
+	/*position: fixed;*/ 
 	left: 0;
 	bottom: 0;	
 	width: 100%;

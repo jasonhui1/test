@@ -63,7 +63,8 @@ h2.noMargin {
 
 
 .middleSection {
-	background-image: linear-gradient(rgb(192, 236, 200), #18a964);
+	background-image: url("../images/main-section.jpg");
+	background-size: contain;
   	height: 500px; /* You must set a specified height */
   	background-position: center; /* Center the image */
   	background-repeat: no-repeat; /* Do not repeat the image */
@@ -75,7 +76,6 @@ h2.noMargin {
 	display: inline-flex;
 	justify-content: center;
 	width: 100%;
-	margin: 0 -10px;
 }
 /* Clear floats after the columns */
 .prizeSection:after {
@@ -106,6 +106,8 @@ body {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
 	height: 100%;
 	/*background-color: #f1f1f1;*/
+	border-radius: 25px;
+	border: 2px solid #18a964;
 }
 
 .prizeImage {

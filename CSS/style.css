@@ -77,6 +77,13 @@ h2.noMargin {
 	width: 100%;
 	margin: 0 -10px;
 }
+/* Clear floats after the columns */
+.prizeSection:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+  
 
 * {
 	box-sizing: border-box;
@@ -93,21 +100,12 @@ body {
 	padding: 0 10px;
 } 
   
-  /* Clear floats after the columns */
-.prizeSection:after {
-	content: "";
-	display: table;
-	clear: both;
-}
-  
+
   /* Style the counter cards */
 .prize {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-	
-	
 	height: 100%;
 	/*background-color: #f1f1f1;*/
-	
 }
 
 .prizeImage {
@@ -119,6 +117,7 @@ body {
 	padding: 16px;
 	text-align: center;
 }
+
   
 /* Responsive columns - one column layout (vertical) on small screens */
 @media screen and (max-width: 600px) {

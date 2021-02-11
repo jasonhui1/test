@@ -72,7 +72,7 @@ h2 {
 }
 
 .middleSection {
-	background-image: url("http://www.managedprintmarketing.com/lmi/mos/Commercial/gogreen/images/gogreen.jpg");
+	background-image: linear-gradient(rgb(192, 236, 200), #18a964);
   	height: 500px; /* You must set a specified height */
   	background-position: center; /* Center the image */
   	background-repeat: no-repeat; /* Do not repeat the image */

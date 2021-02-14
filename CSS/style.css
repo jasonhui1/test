@@ -206,7 +206,7 @@ body {
 	width: 220px;
 	margin: 35px auto;
 	position: relative;
-	box-shadow: 0 0 20px;
+	box-shadow: 0 0 4px;
 	border-radius: 30px;
 }
 

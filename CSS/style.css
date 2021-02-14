@@ -182,17 +182,13 @@ body {
 	text-align: right;
 }
 
-.hero {
+.wrapper {
 	height: 100%;
 	width: 100%;
 	background: linear-gradient( #18a964, #06fbff);
 	background-position: center;
 	background-size: cover;
 	position: absolute;
-}
-
-.logo {
-	box-shadow: 0 0 20px;
 }
 
 .form_box {
@@ -269,7 +265,7 @@ body {
 	margin: 30px 10px 30px;
 }
 
-span {
+.form_box > .span {
 	color: #777;
 	font-size: 12px;
 	bottom: 68px;

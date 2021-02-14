@@ -19,7 +19,7 @@ h2 {
 	text-shadow: 1px 1px #18a964;
 	padding: 20px;
 }
-/*class for h2 to remove white margin*/
+/*class for h2 to remove random white margin*/
 h2.noMargin {
 	margin: 0px;
 }
@@ -93,12 +93,7 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
   
-/* Float four columns side by side */
-.column {
-	float: left;
-	width: 25%;
-	padding: 0 10px;
-} 
+
   
 
   /* Style the counter cards */
@@ -119,6 +114,12 @@ body {
 	padding: 16px;
 	text-align: center;
 }
+/* Float four columns side by side */
+.column {
+	float: left;
+	width: 25%;
+	padding: 0 10px;
+} 
 
   
 /* Responsive columns - one column layout (vertical) on small screens */
@@ -138,18 +139,26 @@ body {
   	padding-bottom: 10px;
 }
 
+/*navigation bar*/
 .topnav {
 	background-color: #18a964;
 	margin-bottom: 0px;
 	padding-left: 16px;
 	padding-right: 16px;
-	color: white;
 	overflow: hidden;
 }
-.navbarLeft{
+.topnav a {
+	color:white;
+	font-size: 2em;
+}
+.topnav a:hover {
+	color:white;
+}
+
+.topnavLeft{
 	float: left;
 }
-.navbarRight{
+.topnavRight{
 	float: right;
 }
 
@@ -180,6 +189,8 @@ body {
 	width: 100%;
 	color: white;
 	text-align: right;
+	padding: 0px;
+	padding-right: 16px;
 }
 
 

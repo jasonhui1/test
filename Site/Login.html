@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<title>Login</title>
+	<link rel="stylesheet" href="../css/style.css">	
+
+</head>
+	
+
+<body>
+    <div class="hero">
+        <div class="navbarLeft">
+		    <img src="../images/UoB_Logo.svg">
+	    </div>
+        <div class="form_box">
+            <div class="button_box">
+                <div id="btn"></div>
+                <!--TO DO : Create the login() function for log in button, should return true-->
+                <button type="button" class="toggle_btn" onclick="login()"> Log In </button>
+                <!--TO DO : Create the register() function for register button-->
+                <button type="button" class="toggle_btn" onclick="register()">Register </button>
+            </div>
+
+            <form id="login" class="input_group">
+                <input type="text" class="input_field" placeholder="User Id" required>
+                <input type="text" class="input_field" placeholder="Enter Password" required>
+                <input type="checkbox" class="check_box"><span>Remember Password</span>
+                <button type="submit" class="submit_btn" onclick="submit()">Log in</button>
+            </form>
+
+            <form id="register" class="input_group">
+                <input type="text" class="input_field" placeholder="User Id" required>
+                <input type="email" class="input_field" placeholder="Email ID" required>
+                <input type="email" class="input_field" placeholder="Enter Password" required>
+                <input type="checkbox" class="check_box"><span>I agree to the terms & conditions</span>
+                <button type="submit" class="submit_btn">Register</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    var z = document.getElementById("btn");
+
+    //Switches to register field
+    function register(){
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+    }   
+
+    //Switches to login field
+    function login(){
+        x.style.left = "50px";
+        y.style.left = "450px"
+        z.style.left = "0";
+    }
+</script>
+</body>
+</html>

@@ -15,28 +15,32 @@
         <div class="logo">
 		    <img src="../images/UoB_Logo.svg">
 	    </div>
-        <div class="form_box">
-            <div class="button_box">
+        <div class="form-box">
+            <div class="button-box">
                 <div id="btn"></div>
-                <!--TO DO : Create the login() function for log in button, should return true-->
-                <button type="button" class="toggle_btn" onclick="login()"> Log In </button>
-                <!--TO DO : Create the register() function for register button-->
-                <button type="button" class="toggle_btn" onclick="register()">Register </button>
+                <!--TO DO : Create the login() function for log in section (switches to login section of the form)-->
+                <button type="button" class="toggle-btn" onclick="login()"> Log In </button>
+                <!--TO DO : Create the register() function for register button (switches to register section of the form)-->
+                <button type="button" class="toggle-btn" onclick="register()">Register </button>
             </div>
 
-            <form id="login" class="input_group">
-                <input type="text" class="input_field" placeholder="User Id" required>
-                <input type="text" class="input_field" placeholder="Enter Password" required>
-                <input type="checkbox" class="check_box"><span>Remember Password</span>
-                <button type="submit" class="submit_btn" onclick="submit()">Log in</button>
+            <h3> Baffle </h3>
+
+            <!--Log in input fields and submit-->
+            <form id="login" class="input-group">
+                <input type="text" class="input-field" placeholder="Username or Email Address" required>
+                <input type="text" class="input-field" placeholder="Password" required>
+                <input type="checkbox" class="check-box"><span>Remember Password</span>
+                <button type="submit" class="submit-btn" onclick="location.href='Main.html';">Log in</button>
             </form>
 
-            <form id="register" class="input_group">
-                <input type="text" class="input_field" placeholder="User Id" required>
-                <input type="email" class="input_field" placeholder="Email ID" required>
-                <input type="email" class="input_field" placeholder="Enter Password" required>
-                <input type="checkbox" class="check_box"><span>I agree to the terms & conditions</span>
-                <button type="submit" class="submit_btn">Register</button>
+             <!--Register input fields and submit-->
+            <form id="register" class="input-group">
+                <input type="text" class="input-field" placeholder="User Id" required>
+                <input type="email" class="input-field" placeholder="Email ID" required>
+                <input type="email" class="input-field" placeholder="Enter Password" required>
+                <input type="checkbox" class="check-box"><span>I agree to the terms & conditions</span>
+                <button type="submit" class="submit-btn">Register</button>
             </form>
         </div>
 

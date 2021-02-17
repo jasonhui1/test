@@ -5,6 +5,10 @@
 	box-sizing: border-box;
 }
 
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 h1  {
 	font-size: 42px;
 	font-family: Arial;
@@ -19,10 +23,6 @@ h2 {
 	text-align: center; 
 	text-shadow: 1px 1px #18a964;
 	padding: 20px;
-}
-/*class for h2 to remove white margin*/
-h2.noMargin {
-	margin: 0px;
 }
 
 .submission caption {
@@ -53,7 +53,7 @@ h2.noMargin {
 	margin: 30px;
 }
 
- .subTable tr {
+.subTable tr {
 	border: 2px solid gray;
 	width: 50%;	
 }
@@ -61,64 +61,80 @@ h2.noMargin {
 .middleSection {
 	background-image: url("../images/main-section.jpg");
 	background-size: contain;
-  	height: 600px; /* You must set a specified height */
+  	height: 50%; /* You must set a specified height */
   	background-position: center; /* Center the image */
   	background-repeat: no-repeat; /* Do not repeat the image */
   	background-size: cover; /* Resize the background image to cover the entire container */
   	margin-top: 0px;
 }
 
-.prizeSection {
-	display: inline-flex;
-	justify-content: center;
-	width: 100%;
+
+/*prize section 'cards' */
+.prizeSection div{
+	overflow: visible;
+	padding: 10px;
+	margin-right: 20px;
+	margin-left: 20px;
+} 
+#left {
+	float:left; 
+	width:50%;
+	height:200px;
 }
+#right { 
+	overflow: auto;
+	min-height:170px;
+}
+
+/*changing the float behaviour to be responsive when the screen width is decreased*/
+@media screen and (max-width: 800px) {
+	#left { 
+		float: none;
+		width:auto;
+	}
+}
+
+  
+/* Responsive columns - one column layout (vertical) on small screens */
+/*@media screen and (min-width: 600px) {
+	.column {
+		float: none
+		width: 100%;
+	  	display: block;
+		margin-bottom: 20px;
+	}
+}  */
 /* Clear floats after the columns */
-.prizeSection:after {
+/*.prizeSection:after {
 	content: "";
 	display: table;
 	clear: both;
 }
-  
-body {
-	font-family: Arial, Helvetica, sans-serif;
-}
-  
-/* Float four columns side by side */
-.column {
-	float: left;
-	width: 25%;
-	padding: 0 10px;
-} 
-  
+  */
+
+
 
   /* Style the counter cards */
+
 .prize {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
 	height: 100%;
 	/*background-color: #f1f1f1;*/
 	border-radius: 25px;
 	border: 2px solid #18a964;
-}
+	background-color: white;
+	text-align: center;
+} 
 
 .prizeImage {
-	background: no-repeat center;
-	background-image: url('../images/dreamweaver.jpg');
+	background: white no-repeat center;
+	background-image: url('../images/prizeImage.jpg');
 	background-size: contain;
 }
+
 .prizeDescription {
 	padding: 16px;
 	text-align: center;
-}
-
-  
-/* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
-.column {
-		width: 100%;
-	  	display: block;
-		margin-bottom: 20px;
-	}
 }
 
 /*Sectioning*/
@@ -146,10 +162,7 @@ body {
 
 
 
-.prize {
-	background-color: white;
-	text-align: center;
-}
+
 
 .leaderboard {
 	background-color: #18a964;

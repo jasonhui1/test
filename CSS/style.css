@@ -57,6 +57,46 @@ h2.noMargin {
 	border: 2px solid gray;
 	width: 50%;	
 }
+ .leaderboard caption{
+	font-size : 25px;
+	background-color: greenyellow;
+	text-align:left;
+	border-top-left-radius:6px;
+	border-top-right-radius: 6px;
+	-moz-border-top-left-radius:6px;
+	-moz-border-top-right-radius:6px;
+ }
+ .leaderboard table{
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	border: 3px solid greenyellow;
+	border-right-color: greenyellow;
+	border-right-width: 5px;
+	border-left-color: greenyellow;
+	border-left-width: 5px;
+	border-bottom-color: greenyellow;
+	border-bottom-width: 5px;
+	border-collapse: collapse;
+	border-bottom-left-radius:6px;
+	border-bottom-right-radius: 6px;
+	-moz-border-bottom-left-radius:6px;
+	-moz-border-bottom-right-radius:6px;
+	margin: 30px;
+ }
+ .leaderboardTable th{
+	background-color:green; 
+	color:white;
+ }
+
+ .leaderboardTable tr{
+	border: 2px solid white;
+	width: 50%;	
+ }
+ .leaderboardTable tr:nth-child(even){
+	background-color: lightgreen;
+	color: #fff;
+  }
 
 .middleSection {
 	background-image: url("../images/main-section.jpg");
